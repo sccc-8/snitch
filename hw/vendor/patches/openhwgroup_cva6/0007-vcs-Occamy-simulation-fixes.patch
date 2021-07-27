@@ -1,0 +1,26 @@
+From f3ec7d2adce813a11138a07e4a9969749f00ba60 Mon Sep 17 00:00:00 2001
+From: Florian Zaruba <zarubaf@iis.ee.ethz.ch>
+Date: Tue, 27 Jul 2021 15:44:16 +0200
+Subject: [PATCH] vcs: Occamy simulation fixes
+
+---
+ src/util/instr_tracer.sv | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/src/util/instr_tracer.sv b/src/util/instr_tracer.sv
+index 2fbe781..d32f597 100644
+--- a/src/util/instr_tracer.sv
++++ b/src/util/instr_tracer.sv
+@@ -142,7 +142,9 @@ module instr_tracer (
+       // --------------
+       if (tracer_if.pck.exception.valid && !(tracer_if.pck.debug_mode && tracer_if.pck.exception.cause == riscv::BREAKPOINT)) begin
+         // print exception
++        `ifndef VCS
+         printException(tracer_if.pck.commit_instr[0].pc, tracer_if.pck.exception.cause, tracer_if.pck.exception.tval);
++        `endif
+       end
+       // ----------------------
+       // Commit Registers
+-- 
+2.25.1.377.g2d2118b814
+
