@@ -24,6 +24,7 @@ package occamy_pkg;
   localparam int unsigned NrCoresS1Quadrant = NrClustersS1Quadrant * NrCoresCluster;
 
   typedef struct packed {
+    logic [3:0] timer;
     logic [31:0] gpio;
     logic uart_tx_watermark;
     logic uart_rx_watermark;
