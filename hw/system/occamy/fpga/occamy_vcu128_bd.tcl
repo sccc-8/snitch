@@ -132,6 +132,8 @@ set bCheckIPs 1
 if { $bCheckIPs == 1 } {
    set list_check_ips "\ 
 xilinx.com:ip:axi_apb_bridge:3.0\
+xilinx.com:ip:axi_dma:7.1\
+xilinx.com:ip:axi_ethernet:7.2\
 xilinx.com:ip:axi_quad_spi:3.2\
 xilinx.com:ip:blk_mem_gen:8.4\
 xilinx.com:ip:clk_wiz:6.0\
@@ -204,10 +206,23 @@ proc create_root_design { parentCell DEBUG } {
 
 
   # Create interface ports
+  set mdio_mdc_0 [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:mdio_rtl:1.0 mdio_mdc_0 ]
+
+  set sgmii_lvds [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:sgmii_rtl:1.0 sgmii_lvds ]
+
+  set sgmii_phyclk [ create_bd_intf_port -mode Slave -vlnv xilinx.com:interface:diff_clock_rtl:1.0 sgmii_phyclk ]
+  set_property -dict [ list \
+   CONFIG.FREQ_HZ {625000000} \
+   ] $sgmii_phyclk
+
 
   # Create ports
   set clk_100MHz_n [ create_bd_port -dir I -type clk -freq_hz 100000000 clk_100MHz_n ]
   set clk_100MHz_p [ create_bd_port -dir I -type clk -freq_hz 100000000 clk_100MHz_p ]
+  set dummy_port_in [ create_bd_port -dir I -type rst dummy_port_in ]
+  set_property -dict [ list \
+   CONFIG.POLARITY {ACTIVE_HIGH} \
+ ] $dummy_port_in
   set reset [ create_bd_port -dir I -type rst reset ]
   set_property -dict [ list \
    CONFIG.POLARITY {ACTIVE_HIGH} \
@@ -220,6 +235,28 @@ proc create_root_design { parentCell DEBUG } {
   set_property -dict [ list \
    CONFIG.C_APB_NUM_SLAVES {2} \
  ] $axi_apb_bridge_0
+
+  # Create instance: axi_dma_0, and set properties
+  set axi_dma_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_dma:7.1 axi_dma_0 ]
+  set_property -dict [ list \
+   CONFIG.c_addr_width {48} \
+ ] $axi_dma_0
+
+  # Create instance: axi_ethernet_0, and set properties
+  set axi_ethernet_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_ethernet:7.2 axi_ethernet_0 ]
+  set_property -dict [ list \
+   CONFIG.DIFFCLK_BOARD_INTERFACE {sgmii_phyclk} \
+   CONFIG.ENABLE_LVDS {true} \
+   CONFIG.ETHERNET_BOARD_INTERFACE {sgmii_lvds} \
+   CONFIG.InstantiateBitslice0 {true} \
+   CONFIG.MDIO_BOARD_INTERFACE {mdio_mdc} \
+   CONFIG.PHYRST_BOARD_INTERFACE_DUMMY_PORT {dummy_port_in} \
+   CONFIG.PHY_TYPE {SGMII} \
+   CONFIG.lvdsclkrate {625} \
+   CONFIG.rxlane0_placement {DIFF_PAIR_2} \
+   CONFIG.rxnibblebitslice0used {false} \
+   CONFIG.txlane0_placement {DIFF_PAIR_1} \
+ ] $axi_ethernet_0
 
   # Create instance: axi_quad_spi_0, and set properties
   set axi_quad_spi_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_quad_spi:3.2 axi_quad_spi_0 ]
@@ -452,9 +489,15 @@ proc create_root_design { parentCell DEBUG } {
   set_property -dict [ list \
    CONFIG.ADVANCED_PROPERTIES {  __view__ { } } \
    CONFIG.NUM_CLKS {1} \
-   CONFIG.NUM_MI {3} \
+   CONFIG.NUM_MI {4} \
    CONFIG.NUM_SI {1} \
  ] $smartconnect_8
+
+  # Create instance: smartconnect_9, and set properties
+  set smartconnect_9 [ create_bd_cell -type ip -vlnv xilinx.com:ip:smartconnect:1.0 smartconnect_9 ]
+  set_property -dict [ list \
+   CONFIG.NUM_SI {3} \
+ ] $smartconnect_9
 
   # Create instance: xlconcat_0, and set properties
   set xlconcat_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconcat:2.1 xlconcat_0 ]
@@ -465,6 +508,15 @@ proc create_root_design { parentCell DEBUG } {
   # Create interface connections
   connect_bd_intf_net -intf_net axi_apb_bridge_0_APB_M [get_bd_intf_pins axi_apb_bridge_0/APB_M] [get_bd_intf_pins hbm_0/SAPB_0]
   connect_bd_intf_net -intf_net axi_apb_bridge_0_APB_M2 [get_bd_intf_pins axi_apb_bridge_0/APB_M2] [get_bd_intf_pins hbm_0/SAPB_1]
+  connect_bd_intf_net -intf_net axi_dma_0_M_AXIS_CNTRL [get_bd_intf_pins axi_dma_0/M_AXIS_CNTRL] [get_bd_intf_pins axi_ethernet_0/s_axis_txc]
+  connect_bd_intf_net -intf_net axi_dma_0_M_AXIS_MM2S [get_bd_intf_pins axi_dma_0/M_AXIS_MM2S] [get_bd_intf_pins axi_ethernet_0/s_axis_txd]
+  connect_bd_intf_net -intf_net axi_dma_0_M_AXI_MM2S [get_bd_intf_pins axi_dma_0/M_AXI_MM2S] [get_bd_intf_pins smartconnect_9/S01_AXI]
+  connect_bd_intf_net -intf_net axi_dma_0_M_AXI_S2MM [get_bd_intf_pins axi_dma_0/M_AXI_S2MM] [get_bd_intf_pins smartconnect_9/S02_AXI]
+  connect_bd_intf_net -intf_net axi_dma_0_M_AXI_SG [get_bd_intf_pins axi_dma_0/M_AXI_SG] [get_bd_intf_pins smartconnect_9/S00_AXI]
+  connect_bd_intf_net -intf_net axi_ethernet_0_m_axis_rxd [get_bd_intf_pins axi_dma_0/S_AXIS_S2MM] [get_bd_intf_pins axi_ethernet_0/m_axis_rxd]
+  connect_bd_intf_net -intf_net axi_ethernet_0_m_axis_rxs [get_bd_intf_pins axi_dma_0/S_AXIS_STS] [get_bd_intf_pins axi_ethernet_0/m_axis_rxs]
+  connect_bd_intf_net -intf_net axi_ethernet_0_mdio [get_bd_intf_ports mdio_mdc_0] [get_bd_intf_pins axi_ethernet_0/mdio]
+  connect_bd_intf_net -intf_net axi_ethernet_0_sgmii [get_bd_intf_ports sgmii_lvds] [get_bd_intf_pins axi_ethernet_0/sgmii]
   connect_bd_intf_net -intf_net occamy_xilinx_0_m_axi_hbm_0 [get_bd_intf_pins occamy_xilinx_0/m_axi_hbm_0] [get_bd_intf_pins smartconnect_0/S00_AXI]
   connect_bd_intf_net -intf_net occamy_xilinx_0_m_axi_hbm_1 [get_bd_intf_pins occamy_xilinx_0/m_axi_hbm_1] [get_bd_intf_pins smartconnect_1/S00_AXI]
   connect_bd_intf_net -intf_net occamy_xilinx_0_m_axi_hbm_2 [get_bd_intf_pins occamy_xilinx_0/m_axi_hbm_2] [get_bd_intf_pins smartconnect_2/S00_AXI]
@@ -476,6 +528,7 @@ proc create_root_design { parentCell DEBUG } {
   connect_bd_intf_net -intf_net occamy_xilinx_0_m_axi_pcie [get_bd_intf_pins occamy_xilinx_0/m_axi_pcie] [get_bd_intf_pins smartconnect_8/S00_AXI]
   # Comment in to probe AXI_PCIE bus (connects to most Xilinx peripherals)
   # set_property HDL_ATTRIBUTE.DEBUG $DEBUG [get_bd_intf_nets occamy_xilinx_0_m_axi_pcie]
+  connect_bd_intf_net -intf_net sgmii_phyclk_1 [get_bd_intf_ports sgmii_phyclk] [get_bd_intf_pins axi_ethernet_0/lvds_clk]
   connect_bd_intf_net -intf_net smartconnect_0_M00_AXI [get_bd_intf_pins hbm_0/SAXI_00] [get_bd_intf_pins smartconnect_0/M00_AXI]
   connect_bd_intf_net -intf_net smartconnect_0_M01_AXI [get_bd_intf_pins hbm_0/SAXI_01] [get_bd_intf_pins smartconnect_0/M01_AXI]
   connect_bd_intf_net -intf_net smartconnect_1_M00_AXI [get_bd_intf_pins hbm_0/SAXI_04] [get_bd_intf_pins smartconnect_1/M00_AXI]
@@ -487,19 +540,25 @@ proc create_root_design { parentCell DEBUG } {
   connect_bd_intf_net -intf_net smartconnect_6_M00_AXI [get_bd_intf_pins hbm_0/SAXI_24] [get_bd_intf_pins smartconnect_6/M00_AXI]
   connect_bd_intf_net -intf_net smartconnect_7_M00_AXI [get_bd_intf_pins hbm_0/SAXI_28] [get_bd_intf_pins smartconnect_7/M00_AXI]
   connect_bd_intf_net -intf_net smartconnect_8_M00_AXI [get_bd_intf_pins axi_apb_bridge_0/AXI4_LITE] [get_bd_intf_pins smartconnect_8/M00_AXI]
+  connect_bd_intf_net -intf_net smartconnect_8_M01_AXI [get_bd_intf_pins axi_dma_0/S_AXI_LITE] [get_bd_intf_pins smartconnect_8/M01_AXI]
   connect_bd_intf_net -intf_net smartconnect_8_M02_AXI [get_bd_intf_pins axi_quad_spi_0/AXI_FULL] [get_bd_intf_pins smartconnect_8/M02_AXI]
+  connect_bd_intf_net -intf_net smartconnect_8_M03_AXI [get_bd_intf_pins axi_ethernet_0/s_axi] [get_bd_intf_pins smartconnect_8/M03_AXI]
+  connect_bd_intf_net -intf_net smartconnect_9_M00_AXI [get_bd_intf_pins occamy_xilinx_0/s_axi_pcie] [get_bd_intf_pins smartconnect_9/M00_AXI]
 
   # Create port connections
+  connect_bd_net -net axi_ethernet_0_interrupt [get_bd_pins axi_ethernet_0/interrupt] [get_bd_pins xlconcat_0/In3]
+  connect_bd_net -net axi_ethernet_0_mac_irq [get_bd_pins axi_ethernet_0/mac_irq] [get_bd_pins xlconcat_0/In2]
   connect_bd_net -net axi_quad_spi_0_ip2intc_irpt [get_bd_pins axi_quad_spi_0/ip2intc_irpt] [get_bd_pins xlconcat_0/In1]
   connect_bd_net -net blk_mem_gen_0_douta [get_bd_pins blk_mem_gen_0/douta] [get_bd_pins occamy_xilinx_0/bootrom_data_i]
   connect_bd_net -net clk_100MHz_n_1 [get_bd_ports clk_100MHz_n] [get_bd_pins clk_wiz/clk_in1_n]
   connect_bd_net -net clk_100MHz_p_1 [get_bd_ports clk_100MHz_p] [get_bd_pins clk_wiz/clk_in1_p]
-  connect_bd_net -net clk_wiz_clk_out1 [get_bd_pins axi_quad_spi_0/ext_spi_clk] [get_bd_pins clk_wiz/clk_out1] [get_bd_pins hbm_0/AXI_00_ACLK] [get_bd_pins hbm_0/AXI_01_ACLK] [get_bd_pins hbm_0/AXI_04_ACLK] [get_bd_pins hbm_0/AXI_05_ACLK] [get_bd_pins hbm_0/AXI_08_ACLK] [get_bd_pins hbm_0/AXI_12_ACLK] [get_bd_pins hbm_0/AXI_16_ACLK] [get_bd_pins hbm_0/AXI_20_ACLK] [get_bd_pins hbm_0/AXI_24_ACLK] [get_bd_pins hbm_0/AXI_28_ACLK] [get_bd_pins hbm_0/HBM_REF_CLK_0] [get_bd_pins hbm_0/HBM_REF_CLK_1] [get_bd_pins smartconnect_0/aclk1] [get_bd_pins smartconnect_1/aclk1] [get_bd_pins smartconnect_2/aclk1] [get_bd_pins smartconnect_3/aclk1] [get_bd_pins smartconnect_4/aclk1] [get_bd_pins smartconnect_5/aclk1] [get_bd_pins smartconnect_6/aclk1] [get_bd_pins smartconnect_7/aclk1]
-  connect_bd_net -net clk_wiz_clk_out2 [get_bd_pins axi_apb_bridge_0/s_axi_aclk] [get_bd_pins axi_quad_spi_0/s_axi4_aclk] [get_bd_pins blk_mem_gen_0/clka] [get_bd_pins clk_wiz/clk_out2] [get_bd_pins hbm_0/APB_0_PCLK] [get_bd_pins hbm_0/APB_1_PCLK] [get_bd_pins occamy_xilinx_0/clk_i] [get_bd_pins occamy_xilinx_0/clk_periph_i] [get_bd_pins smartconnect_0/aclk] [get_bd_pins smartconnect_1/aclk] [get_bd_pins smartconnect_2/aclk] [get_bd_pins smartconnect_3/aclk] [get_bd_pins smartconnect_4/aclk] [get_bd_pins smartconnect_5/aclk] [get_bd_pins smartconnect_6/aclk] [get_bd_pins smartconnect_7/aclk] [get_bd_pins smartconnect_8/aclk]
+  connect_bd_net -net clk_wiz_clk_out1 [get_bd_pins axi_quad_spi_0/ext_spi_clk] [get_bd_pins clk_wiz/clk_out1] [get_bd_pins hbm_0/AXI_00_ACLK] [get_bd_pins hbm_0/AXI_00_WDATA_PARITY] [get_bd_pins hbm_0/AXI_01_ACLK] [get_bd_pins hbm_0/AXI_04_ACLK] [get_bd_pins hbm_0/AXI_05_ACLK] [get_bd_pins hbm_0/AXI_08_ACLK] [get_bd_pins hbm_0/AXI_12_ACLK] [get_bd_pins hbm_0/AXI_16_ACLK] [get_bd_pins hbm_0/AXI_20_ACLK] [get_bd_pins hbm_0/AXI_24_ACLK] [get_bd_pins hbm_0/AXI_28_ACLK] [get_bd_pins hbm_0/HBM_REF_CLK_0] [get_bd_pins hbm_0/HBM_REF_CLK_1] [get_bd_pins smartconnect_0/aclk1] [get_bd_pins smartconnect_1/aclk1] [get_bd_pins smartconnect_2/aclk1] [get_bd_pins smartconnect_3/aclk1] [get_bd_pins smartconnect_4/aclk1] [get_bd_pins smartconnect_5/aclk1] [get_bd_pins smartconnect_6/aclk1] [get_bd_pins smartconnect_7/aclk1]
+  connect_bd_net -net clk_wiz_clk_out2 [get_bd_pins axi_apb_bridge_0/s_axi_aclk] [get_bd_pins axi_dma_0/m_axi_mm2s_aclk] [get_bd_pins axi_dma_0/m_axi_s2mm_aclk] [get_bd_pins axi_dma_0/m_axi_sg_aclk] [get_bd_pins axi_dma_0/s_axi_lite_aclk] [get_bd_pins axi_ethernet_0/axis_clk] [get_bd_pins axi_ethernet_0/s_axi_lite_clk] [get_bd_pins axi_quad_spi_0/s_axi4_aclk] [get_bd_pins blk_mem_gen_0/clka] [get_bd_pins clk_wiz/clk_out2] [get_bd_pins hbm_0/APB_0_PCLK] [get_bd_pins hbm_0/APB_1_PCLK] [get_bd_pins occamy_xilinx_0/clk_i] [get_bd_pins occamy_xilinx_0/clk_periph_i] [get_bd_pins smartconnect_0/aclk] [get_bd_pins smartconnect_1/aclk] [get_bd_pins smartconnect_2/aclk] [get_bd_pins smartconnect_3/aclk] [get_bd_pins smartconnect_4/aclk] [get_bd_pins smartconnect_5/aclk] [get_bd_pins smartconnect_6/aclk] [get_bd_pins smartconnect_7/aclk] [get_bd_pins smartconnect_8/aclk] [get_bd_pins smartconnect_9/aclk]
   connect_bd_net -net clk_wiz_clk_out3 [get_bd_pins clk_wiz/clk_out3] [get_bd_pins occamy_xilinx_0/rtc_i]
   connect_bd_net -net const_high_dout [get_bd_pins axi_quad_spi_0/keyclearb] [get_bd_pins axi_quad_spi_0/usrdoneo] [get_bd_pins axi_quad_spi_0/usrdonets] [get_bd_pins const_high/dout]
-  connect_bd_net -net const_low_dout [get_bd_pins axi_quad_spi_0/gsr] [get_bd_pins axi_quad_spi_0/gts] [get_bd_pins axi_quad_spi_0/usrcclkts] [get_bd_pins const_low/dout] [get_bd_pins xlconcat_0/In2] [get_bd_pins xlconcat_0/In3]
-  connect_bd_net -net inv_Res [get_bd_pins axi_apb_bridge_0/s_axi_aresetn] [get_bd_pins axi_quad_spi_0/s_axi4_aresetn] [get_bd_pins hbm_0/APB_0_PRESET_N] [get_bd_pins hbm_0/APB_1_PRESET_N] [get_bd_pins hbm_0/AXI_00_ARESET_N] [get_bd_pins hbm_0/AXI_01_ARESET_N] [get_bd_pins hbm_0/AXI_04_ARESET_N] [get_bd_pins hbm_0/AXI_05_ARESET_N] [get_bd_pins hbm_0/AXI_08_ARESET_N] [get_bd_pins hbm_0/AXI_12_ARESET_N] [get_bd_pins hbm_0/AXI_16_ARESET_N] [get_bd_pins hbm_0/AXI_20_ARESET_N] [get_bd_pins hbm_0/AXI_24_ARESET_N] [get_bd_pins hbm_0/AXI_28_ARESET_N] [get_bd_pins inv/Res] [get_bd_pins occamy_xilinx_0/rst_ni] [get_bd_pins occamy_xilinx_0/rst_periph_ni] [get_bd_pins smartconnect_0/aresetn] [get_bd_pins smartconnect_1/aresetn] [get_bd_pins smartconnect_2/aresetn] [get_bd_pins smartconnect_3/aresetn] [get_bd_pins smartconnect_4/aresetn] [get_bd_pins smartconnect_5/aresetn] [get_bd_pins smartconnect_6/aresetn] [get_bd_pins smartconnect_7/aresetn] [get_bd_pins smartconnect_8/aresetn]
+  connect_bd_net -net const_low_dout [get_bd_pins axi_quad_spi_0/gsr] [get_bd_pins axi_quad_spi_0/gts] [get_bd_pins axi_quad_spi_0/usrcclkts] [get_bd_pins const_low/dout]
+  connect_bd_net -net dummy_port_in_1 [get_bd_ports dummy_port_in] [get_bd_pins axi_ethernet_0/dummy_port_in]
+  connect_bd_net -net inv_Res [get_bd_pins axi_apb_bridge_0/s_axi_aresetn] [get_bd_pins axi_dma_0/axi_resetn] [get_bd_pins axi_ethernet_0/axi_rxd_arstn] [get_bd_pins axi_ethernet_0/axi_rxs_arstn] [get_bd_pins axi_ethernet_0/axi_txc_arstn] [get_bd_pins axi_ethernet_0/axi_txd_arstn] [get_bd_pins axi_ethernet_0/s_axi_lite_resetn] [get_bd_pins axi_quad_spi_0/s_axi4_aresetn] [get_bd_pins hbm_0/APB_0_PRESET_N] [get_bd_pins hbm_0/APB_1_PRESET_N] [get_bd_pins hbm_0/AXI_00_ARESET_N] [get_bd_pins hbm_0/AXI_01_ARESET_N] [get_bd_pins hbm_0/AXI_04_ARESET_N] [get_bd_pins hbm_0/AXI_05_ARESET_N] [get_bd_pins hbm_0/AXI_08_ARESET_N] [get_bd_pins hbm_0/AXI_12_ARESET_N] [get_bd_pins hbm_0/AXI_16_ARESET_N] [get_bd_pins hbm_0/AXI_20_ARESET_N] [get_bd_pins hbm_0/AXI_24_ARESET_N] [get_bd_pins hbm_0/AXI_28_ARESET_N] [get_bd_pins inv/Res] [get_bd_pins occamy_xilinx_0/rst_ni] [get_bd_pins occamy_xilinx_0/rst_periph_ni] [get_bd_pins smartconnect_0/aresetn] [get_bd_pins smartconnect_1/aresetn] [get_bd_pins smartconnect_2/aresetn] [get_bd_pins smartconnect_3/aresetn] [get_bd_pins smartconnect_4/aresetn] [get_bd_pins smartconnect_5/aresetn] [get_bd_pins smartconnect_6/aresetn] [get_bd_pins smartconnect_7/aresetn] [get_bd_pins smartconnect_8/aresetn] [get_bd_pins smartconnect_9/aresetn]
   connect_bd_net -net occamy_xilinx_0_bootrom_addr_o [get_bd_pins blk_mem_gen_0/addra] [get_bd_pins occamy_xilinx_0/bootrom_addr_o]
   connect_bd_net -net occamy_xilinx_0_bootrom_en_o [get_bd_pins blk_mem_gen_0/ena] [get_bd_pins occamy_xilinx_0/bootrom_en_o]
   connect_bd_net -net occamy_xilinx_0_uart_tx_o [get_bd_ports uart_tx_o_0] [get_bd_pins occamy_xilinx_0/uart_tx_o]
@@ -508,6 +567,11 @@ proc create_root_design { parentCell DEBUG } {
   connect_bd_net -net xlconcat_0_dout [get_bd_pins occamy_xilinx_0/ext_irq_i] [get_bd_pins xlconcat_0/dout]
 
   # Create address segments
+  assign_bd_address -offset 0x00000000 -range 0x0001000000000000 -target_address_space [get_bd_addr_spaces axi_dma_0/Data_SG] [get_bd_addr_segs occamy_xilinx_0/s_axi_pcie/reg0] -force
+  assign_bd_address -offset 0x00000000 -range 0x0001000000000000 -target_address_space [get_bd_addr_spaces axi_dma_0/Data_MM2S] [get_bd_addr_segs occamy_xilinx_0/s_axi_pcie/reg0] -force
+  assign_bd_address -offset 0x00000000 -range 0x0001000000000000 -target_address_space [get_bd_addr_spaces axi_dma_0/Data_S2MM] [get_bd_addr_segs occamy_xilinx_0/s_axi_pcie/reg0] -force
+  assign_bd_address -offset 0x41000000 -range 0x00010000 -target_address_space [get_bd_addr_spaces occamy_xilinx_0/m_axi_pcie] [get_bd_addr_segs axi_dma_0/S_AXI_LITE/Reg] -force
+  assign_bd_address -offset 0x40C00000 -range 0x00040000 -target_address_space [get_bd_addr_spaces occamy_xilinx_0/m_axi_pcie] [get_bd_addr_segs axi_ethernet_0/s_axi/Reg0] -force
   assign_bd_address -offset 0x4C000000 -range 0x00400000 -target_address_space [get_bd_addr_spaces occamy_xilinx_0/m_axi_pcie] [get_bd_addr_segs axi_quad_spi_0/aximm/MEM0] -force
   assign_bd_address -offset 0x001000000000 -range 0x10000000 -target_address_space [get_bd_addr_spaces occamy_xilinx_0/m_axi_hbm_0] [get_bd_addr_segs hbm_0/SAXI_00/HBM_MEM00] -force
   assign_bd_address -offset 0x80000000 -range 0x10000000 -target_address_space [get_bd_addr_spaces occamy_xilinx_0/m_axi_hbm_0] [get_bd_addr_segs hbm_0/SAXI_01/HBM_MEM00] -force
