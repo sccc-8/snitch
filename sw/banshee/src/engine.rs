@@ -5,7 +5,7 @@
 //! Engine for dynamic binary translation and execution
 
 use crate::{peripherals::Peripherals, riscv, tran::ElfTranslator, util::SiUnit, Configuration};
-extern crate flexfloat;
+use crate::flexfloat;
 extern crate termion;
 use anyhow::{anyhow, bail, Result};
 use itertools::Itertools;

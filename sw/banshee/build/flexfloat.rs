@@ -2,10 +2,10 @@
 // Licensed under the Apache License, Version 2.0, see LICENSE for details.
 // SPDX-License-Identifier: Apache-2.0
 
-const FLEXFLOAT_DIR: &str = "../vendor/flexfloat";
+const FLEXFLOAT_DIR: &str = "vendor/flexfloat";
 
-fn main() {
-    let src = ["../vendor/flexfloat/src/flexfloat.c"];
+pub fn build() {
+    let src = ["vendor/flexfloat/src/flexfloat.c"];
 
     // Ensure that we rebuild whenever any of the input files changes.
     for f in &src {

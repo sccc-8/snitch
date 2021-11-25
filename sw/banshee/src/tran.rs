@@ -18,7 +18,7 @@ use std::{
     collections::{BTreeSet, HashMap},
     ffi::CString,
 };
-extern crate flexfloat;
+use crate::flexfloat;
 
 static NONAME: &'static i8 = unsafe { std::mem::transmute("\0".as_ptr()) };
 

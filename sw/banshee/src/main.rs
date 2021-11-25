@@ -24,6 +24,7 @@ mod runtime;
 mod softfloat;
 pub mod tran;
 pub mod util;
+pub mod flexfloat;
 
 use crate::configuration::*;
 use crate::engine::*;

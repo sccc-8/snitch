@@ -2,10 +2,14 @@
 // Licensed under the Apache License, Version 2.0, see LICENSE for details.
 // SPDX-License-Identifier: Apache-2.0
 
+mod flexfloat;
 mod runtime;
 mod softfloat;
 
 fn main() {
+    // Build flexfloat
+    flexfloat::build();
+
     // Prevent cargo from re-building everything by default.
     // Other subcommands can still emit their own rerun-if-changed lines.
     println!("cargo:rerun-if-changed=build/softfloat.rs");
