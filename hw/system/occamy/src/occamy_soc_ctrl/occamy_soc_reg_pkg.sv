@@ -9,7 +9,7 @@ package occamy_soc_reg_pkg;
   // Param list
   parameter int NumScratchRegs = 4;
   parameter int NumPads = 31;
-  parameter int NumS1Quadrants = 8;
+  parameter int NumS1Quadrants = 6;
 
   // Address widths within the block
   parameter int BlockAw = 10;
@@ -456,134 +456,6 @@ package occamy_soc_reg_pkg;
   } occamy_soc_reg2hw_ro_end_addr_high_3_quadrant_5_reg_t;
 
   typedef struct packed {
-    logic [31:0] q;
-  } occamy_soc_reg2hw_ro_start_addr_low_0_quadrant_6_reg_t;
-
-  typedef struct packed {
-    logic [15:0] q;
-  } occamy_soc_reg2hw_ro_start_addr_high_0_quadrant_6_reg_t;
-
-  typedef struct packed {
-    logic [31:0] q;
-  } occamy_soc_reg2hw_ro_end_addr_low_0_quadrant_6_reg_t;
-
-  typedef struct packed {
-    logic [15:0] q;
-  } occamy_soc_reg2hw_ro_end_addr_high_0_quadrant_6_reg_t;
-
-  typedef struct packed {
-    logic [31:0] q;
-  } occamy_soc_reg2hw_ro_start_addr_low_1_quadrant_6_reg_t;
-
-  typedef struct packed {
-    logic [15:0] q;
-  } occamy_soc_reg2hw_ro_start_addr_high_1_quadrant_6_reg_t;
-
-  typedef struct packed {
-    logic [31:0] q;
-  } occamy_soc_reg2hw_ro_end_addr_low_1_quadrant_6_reg_t;
-
-  typedef struct packed {
-    logic [15:0] q;
-  } occamy_soc_reg2hw_ro_end_addr_high_1_quadrant_6_reg_t;
-
-  typedef struct packed {
-    logic [31:0] q;
-  } occamy_soc_reg2hw_ro_start_addr_low_2_quadrant_6_reg_t;
-
-  typedef struct packed {
-    logic [15:0] q;
-  } occamy_soc_reg2hw_ro_start_addr_high_2_quadrant_6_reg_t;
-
-  typedef struct packed {
-    logic [31:0] q;
-  } occamy_soc_reg2hw_ro_end_addr_low_2_quadrant_6_reg_t;
-
-  typedef struct packed {
-    logic [15:0] q;
-  } occamy_soc_reg2hw_ro_end_addr_high_2_quadrant_6_reg_t;
-
-  typedef struct packed {
-    logic [31:0] q;
-  } occamy_soc_reg2hw_ro_start_addr_low_3_quadrant_6_reg_t;
-
-  typedef struct packed {
-    logic [15:0] q;
-  } occamy_soc_reg2hw_ro_start_addr_high_3_quadrant_6_reg_t;
-
-  typedef struct packed {
-    logic [31:0] q;
-  } occamy_soc_reg2hw_ro_end_addr_low_3_quadrant_6_reg_t;
-
-  typedef struct packed {
-    logic [15:0] q;
-  } occamy_soc_reg2hw_ro_end_addr_high_3_quadrant_6_reg_t;
-
-  typedef struct packed {
-    logic [31:0] q;
-  } occamy_soc_reg2hw_ro_start_addr_low_0_quadrant_7_reg_t;
-
-  typedef struct packed {
-    logic [15:0] q;
-  } occamy_soc_reg2hw_ro_start_addr_high_0_quadrant_7_reg_t;
-
-  typedef struct packed {
-    logic [31:0] q;
-  } occamy_soc_reg2hw_ro_end_addr_low_0_quadrant_7_reg_t;
-
-  typedef struct packed {
-    logic [15:0] q;
-  } occamy_soc_reg2hw_ro_end_addr_high_0_quadrant_7_reg_t;
-
-  typedef struct packed {
-    logic [31:0] q;
-  } occamy_soc_reg2hw_ro_start_addr_low_1_quadrant_7_reg_t;
-
-  typedef struct packed {
-    logic [15:0] q;
-  } occamy_soc_reg2hw_ro_start_addr_high_1_quadrant_7_reg_t;
-
-  typedef struct packed {
-    logic [31:0] q;
-  } occamy_soc_reg2hw_ro_end_addr_low_1_quadrant_7_reg_t;
-
-  typedef struct packed {
-    logic [15:0] q;
-  } occamy_soc_reg2hw_ro_end_addr_high_1_quadrant_7_reg_t;
-
-  typedef struct packed {
-    logic [31:0] q;
-  } occamy_soc_reg2hw_ro_start_addr_low_2_quadrant_7_reg_t;
-
-  typedef struct packed {
-    logic [15:0] q;
-  } occamy_soc_reg2hw_ro_start_addr_high_2_quadrant_7_reg_t;
-
-  typedef struct packed {
-    logic [31:0] q;
-  } occamy_soc_reg2hw_ro_end_addr_low_2_quadrant_7_reg_t;
-
-  typedef struct packed {
-    logic [15:0] q;
-  } occamy_soc_reg2hw_ro_end_addr_high_2_quadrant_7_reg_t;
-
-  typedef struct packed {
-    logic [31:0] q;
-  } occamy_soc_reg2hw_ro_start_addr_low_3_quadrant_7_reg_t;
-
-  typedef struct packed {
-    logic [15:0] q;
-  } occamy_soc_reg2hw_ro_start_addr_high_3_quadrant_7_reg_t;
-
-  typedef struct packed {
-    logic [31:0] q;
-  } occamy_soc_reg2hw_ro_end_addr_low_3_quadrant_7_reg_t;
-
-  typedef struct packed {
-    logic [15:0] q;
-  } occamy_soc_reg2hw_ro_end_addr_high_3_quadrant_7_reg_t;
-
-  typedef struct packed {
     struct packed {
       logic        d;
       logic        de;
@@ -613,150 +485,118 @@ package occamy_soc_reg_pkg;
 
   // Register -> HW type
   typedef struct packed {
-    occamy_soc_reg2hw_intr_state_reg_t intr_state; // [3259:3258]
-    occamy_soc_reg2hw_intr_enable_reg_t intr_enable; // [3257:3256]
-    occamy_soc_reg2hw_intr_test_reg_t intr_test; // [3255:3252]
-    occamy_soc_reg2hw_pad_mreg_t [30:0] pad; // [3251:3128]
-    occamy_soc_reg2hw_isolate_mreg_t [7:0] isolate; // [3127:3088]
-    occamy_soc_reg2hw_ro_cache_enable_mreg_t [7:0] ro_cache_enable; // [3087:3080]
-    occamy_soc_reg2hw_ro_cache_flush_mreg_t [7:0] ro_cache_flush; // [3079:3072]
-    occamy_soc_reg2hw_ro_start_addr_low_0_quadrant_0_reg_t ro_start_addr_low_0_quadrant_0; // [3071:3040]
-    occamy_soc_reg2hw_ro_start_addr_high_0_quadrant_0_reg_t ro_start_addr_high_0_quadrant_0; // [3039:3024]
-    occamy_soc_reg2hw_ro_end_addr_low_0_quadrant_0_reg_t ro_end_addr_low_0_quadrant_0; // [3023:2992]
-    occamy_soc_reg2hw_ro_end_addr_high_0_quadrant_0_reg_t ro_end_addr_high_0_quadrant_0; // [2991:2976]
-    occamy_soc_reg2hw_ro_start_addr_low_1_quadrant_0_reg_t ro_start_addr_low_1_quadrant_0; // [2975:2944]
-    occamy_soc_reg2hw_ro_start_addr_high_1_quadrant_0_reg_t ro_start_addr_high_1_quadrant_0; // [2943:2928]
-    occamy_soc_reg2hw_ro_end_addr_low_1_quadrant_0_reg_t ro_end_addr_low_1_quadrant_0; // [2927:2896]
-    occamy_soc_reg2hw_ro_end_addr_high_1_quadrant_0_reg_t ro_end_addr_high_1_quadrant_0; // [2895:2880]
-    occamy_soc_reg2hw_ro_start_addr_low_2_quadrant_0_reg_t ro_start_addr_low_2_quadrant_0; // [2879:2848]
-    occamy_soc_reg2hw_ro_start_addr_high_2_quadrant_0_reg_t ro_start_addr_high_2_quadrant_0; // [2847:2832]
-    occamy_soc_reg2hw_ro_end_addr_low_2_quadrant_0_reg_t ro_end_addr_low_2_quadrant_0; // [2831:2800]
-    occamy_soc_reg2hw_ro_end_addr_high_2_quadrant_0_reg_t ro_end_addr_high_2_quadrant_0; // [2799:2784]
-    occamy_soc_reg2hw_ro_start_addr_low_3_quadrant_0_reg_t ro_start_addr_low_3_quadrant_0; // [2783:2752]
-    occamy_soc_reg2hw_ro_start_addr_high_3_quadrant_0_reg_t ro_start_addr_high_3_quadrant_0; // [2751:2736]
-    occamy_soc_reg2hw_ro_end_addr_low_3_quadrant_0_reg_t ro_end_addr_low_3_quadrant_0; // [2735:2704]
-    occamy_soc_reg2hw_ro_end_addr_high_3_quadrant_0_reg_t ro_end_addr_high_3_quadrant_0; // [2703:2688]
-    occamy_soc_reg2hw_ro_start_addr_low_0_quadrant_1_reg_t ro_start_addr_low_0_quadrant_1; // [2687:2656]
-    occamy_soc_reg2hw_ro_start_addr_high_0_quadrant_1_reg_t ro_start_addr_high_0_quadrant_1; // [2655:2640]
-    occamy_soc_reg2hw_ro_end_addr_low_0_quadrant_1_reg_t ro_end_addr_low_0_quadrant_1; // [2639:2608]
-    occamy_soc_reg2hw_ro_end_addr_high_0_quadrant_1_reg_t ro_end_addr_high_0_quadrant_1; // [2607:2592]
-    occamy_soc_reg2hw_ro_start_addr_low_1_quadrant_1_reg_t ro_start_addr_low_1_quadrant_1; // [2591:2560]
-    occamy_soc_reg2hw_ro_start_addr_high_1_quadrant_1_reg_t ro_start_addr_high_1_quadrant_1; // [2559:2544]
-    occamy_soc_reg2hw_ro_end_addr_low_1_quadrant_1_reg_t ro_end_addr_low_1_quadrant_1; // [2543:2512]
-    occamy_soc_reg2hw_ro_end_addr_high_1_quadrant_1_reg_t ro_end_addr_high_1_quadrant_1; // [2511:2496]
-    occamy_soc_reg2hw_ro_start_addr_low_2_quadrant_1_reg_t ro_start_addr_low_2_quadrant_1; // [2495:2464]
-    occamy_soc_reg2hw_ro_start_addr_high_2_quadrant_1_reg_t ro_start_addr_high_2_quadrant_1; // [2463:2448]
-    occamy_soc_reg2hw_ro_end_addr_low_2_quadrant_1_reg_t ro_end_addr_low_2_quadrant_1; // [2447:2416]
-    occamy_soc_reg2hw_ro_end_addr_high_2_quadrant_1_reg_t ro_end_addr_high_2_quadrant_1; // [2415:2400]
-    occamy_soc_reg2hw_ro_start_addr_low_3_quadrant_1_reg_t ro_start_addr_low_3_quadrant_1; // [2399:2368]
-    occamy_soc_reg2hw_ro_start_addr_high_3_quadrant_1_reg_t ro_start_addr_high_3_quadrant_1; // [2367:2352]
-    occamy_soc_reg2hw_ro_end_addr_low_3_quadrant_1_reg_t ro_end_addr_low_3_quadrant_1; // [2351:2320]
-    occamy_soc_reg2hw_ro_end_addr_high_3_quadrant_1_reg_t ro_end_addr_high_3_quadrant_1; // [2319:2304]
-    occamy_soc_reg2hw_ro_start_addr_low_0_quadrant_2_reg_t ro_start_addr_low_0_quadrant_2; // [2303:2272]
-    occamy_soc_reg2hw_ro_start_addr_high_0_quadrant_2_reg_t ro_start_addr_high_0_quadrant_2; // [2271:2256]
-    occamy_soc_reg2hw_ro_end_addr_low_0_quadrant_2_reg_t ro_end_addr_low_0_quadrant_2; // [2255:2224]
-    occamy_soc_reg2hw_ro_end_addr_high_0_quadrant_2_reg_t ro_end_addr_high_0_quadrant_2; // [2223:2208]
-    occamy_soc_reg2hw_ro_start_addr_low_1_quadrant_2_reg_t ro_start_addr_low_1_quadrant_2; // [2207:2176]
-    occamy_soc_reg2hw_ro_start_addr_high_1_quadrant_2_reg_t ro_start_addr_high_1_quadrant_2; // [2175:2160]
-    occamy_soc_reg2hw_ro_end_addr_low_1_quadrant_2_reg_t ro_end_addr_low_1_quadrant_2; // [2159:2128]
-    occamy_soc_reg2hw_ro_end_addr_high_1_quadrant_2_reg_t ro_end_addr_high_1_quadrant_2; // [2127:2112]
-    occamy_soc_reg2hw_ro_start_addr_low_2_quadrant_2_reg_t ro_start_addr_low_2_quadrant_2; // [2111:2080]
-    occamy_soc_reg2hw_ro_start_addr_high_2_quadrant_2_reg_t ro_start_addr_high_2_quadrant_2; // [2079:2064]
-    occamy_soc_reg2hw_ro_end_addr_low_2_quadrant_2_reg_t ro_end_addr_low_2_quadrant_2; // [2063:2032]
-    occamy_soc_reg2hw_ro_end_addr_high_2_quadrant_2_reg_t ro_end_addr_high_2_quadrant_2; // [2031:2016]
-    occamy_soc_reg2hw_ro_start_addr_low_3_quadrant_2_reg_t ro_start_addr_low_3_quadrant_2; // [2015:1984]
-    occamy_soc_reg2hw_ro_start_addr_high_3_quadrant_2_reg_t ro_start_addr_high_3_quadrant_2; // [1983:1968]
-    occamy_soc_reg2hw_ro_end_addr_low_3_quadrant_2_reg_t ro_end_addr_low_3_quadrant_2; // [1967:1936]
-    occamy_soc_reg2hw_ro_end_addr_high_3_quadrant_2_reg_t ro_end_addr_high_3_quadrant_2; // [1935:1920]
-    occamy_soc_reg2hw_ro_start_addr_low_0_quadrant_3_reg_t ro_start_addr_low_0_quadrant_3; // [1919:1888]
-    occamy_soc_reg2hw_ro_start_addr_high_0_quadrant_3_reg_t ro_start_addr_high_0_quadrant_3; // [1887:1872]
-    occamy_soc_reg2hw_ro_end_addr_low_0_quadrant_3_reg_t ro_end_addr_low_0_quadrant_3; // [1871:1840]
-    occamy_soc_reg2hw_ro_end_addr_high_0_quadrant_3_reg_t ro_end_addr_high_0_quadrant_3; // [1839:1824]
-    occamy_soc_reg2hw_ro_start_addr_low_1_quadrant_3_reg_t ro_start_addr_low_1_quadrant_3; // [1823:1792]
-    occamy_soc_reg2hw_ro_start_addr_high_1_quadrant_3_reg_t ro_start_addr_high_1_quadrant_3; // [1791:1776]
-    occamy_soc_reg2hw_ro_end_addr_low_1_quadrant_3_reg_t ro_end_addr_low_1_quadrant_3; // [1775:1744]
-    occamy_soc_reg2hw_ro_end_addr_high_1_quadrant_3_reg_t ro_end_addr_high_1_quadrant_3; // [1743:1728]
-    occamy_soc_reg2hw_ro_start_addr_low_2_quadrant_3_reg_t ro_start_addr_low_2_quadrant_3; // [1727:1696]
-    occamy_soc_reg2hw_ro_start_addr_high_2_quadrant_3_reg_t ro_start_addr_high_2_quadrant_3; // [1695:1680]
-    occamy_soc_reg2hw_ro_end_addr_low_2_quadrant_3_reg_t ro_end_addr_low_2_quadrant_3; // [1679:1648]
-    occamy_soc_reg2hw_ro_end_addr_high_2_quadrant_3_reg_t ro_end_addr_high_2_quadrant_3; // [1647:1632]
-    occamy_soc_reg2hw_ro_start_addr_low_3_quadrant_3_reg_t ro_start_addr_low_3_quadrant_3; // [1631:1600]
-    occamy_soc_reg2hw_ro_start_addr_high_3_quadrant_3_reg_t ro_start_addr_high_3_quadrant_3; // [1599:1584]
-    occamy_soc_reg2hw_ro_end_addr_low_3_quadrant_3_reg_t ro_end_addr_low_3_quadrant_3; // [1583:1552]
-    occamy_soc_reg2hw_ro_end_addr_high_3_quadrant_3_reg_t ro_end_addr_high_3_quadrant_3; // [1551:1536]
-    occamy_soc_reg2hw_ro_start_addr_low_0_quadrant_4_reg_t ro_start_addr_low_0_quadrant_4; // [1535:1504]
-    occamy_soc_reg2hw_ro_start_addr_high_0_quadrant_4_reg_t ro_start_addr_high_0_quadrant_4; // [1503:1488]
-    occamy_soc_reg2hw_ro_end_addr_low_0_quadrant_4_reg_t ro_end_addr_low_0_quadrant_4; // [1487:1456]
-    occamy_soc_reg2hw_ro_end_addr_high_0_quadrant_4_reg_t ro_end_addr_high_0_quadrant_4; // [1455:1440]
-    occamy_soc_reg2hw_ro_start_addr_low_1_quadrant_4_reg_t ro_start_addr_low_1_quadrant_4; // [1439:1408]
-    occamy_soc_reg2hw_ro_start_addr_high_1_quadrant_4_reg_t ro_start_addr_high_1_quadrant_4; // [1407:1392]
-    occamy_soc_reg2hw_ro_end_addr_low_1_quadrant_4_reg_t ro_end_addr_low_1_quadrant_4; // [1391:1360]
-    occamy_soc_reg2hw_ro_end_addr_high_1_quadrant_4_reg_t ro_end_addr_high_1_quadrant_4; // [1359:1344]
-    occamy_soc_reg2hw_ro_start_addr_low_2_quadrant_4_reg_t ro_start_addr_low_2_quadrant_4; // [1343:1312]
-    occamy_soc_reg2hw_ro_start_addr_high_2_quadrant_4_reg_t ro_start_addr_high_2_quadrant_4; // [1311:1296]
-    occamy_soc_reg2hw_ro_end_addr_low_2_quadrant_4_reg_t ro_end_addr_low_2_quadrant_4; // [1295:1264]
-    occamy_soc_reg2hw_ro_end_addr_high_2_quadrant_4_reg_t ro_end_addr_high_2_quadrant_4; // [1263:1248]
-    occamy_soc_reg2hw_ro_start_addr_low_3_quadrant_4_reg_t ro_start_addr_low_3_quadrant_4; // [1247:1216]
-    occamy_soc_reg2hw_ro_start_addr_high_3_quadrant_4_reg_t ro_start_addr_high_3_quadrant_4; // [1215:1200]
-    occamy_soc_reg2hw_ro_end_addr_low_3_quadrant_4_reg_t ro_end_addr_low_3_quadrant_4; // [1199:1168]
-    occamy_soc_reg2hw_ro_end_addr_high_3_quadrant_4_reg_t ro_end_addr_high_3_quadrant_4; // [1167:1152]
-    occamy_soc_reg2hw_ro_start_addr_low_0_quadrant_5_reg_t ro_start_addr_low_0_quadrant_5; // [1151:1120]
-    occamy_soc_reg2hw_ro_start_addr_high_0_quadrant_5_reg_t ro_start_addr_high_0_quadrant_5; // [1119:1104]
-    occamy_soc_reg2hw_ro_end_addr_low_0_quadrant_5_reg_t ro_end_addr_low_0_quadrant_5; // [1103:1072]
-    occamy_soc_reg2hw_ro_end_addr_high_0_quadrant_5_reg_t ro_end_addr_high_0_quadrant_5; // [1071:1056]
-    occamy_soc_reg2hw_ro_start_addr_low_1_quadrant_5_reg_t ro_start_addr_low_1_quadrant_5; // [1055:1024]
-    occamy_soc_reg2hw_ro_start_addr_high_1_quadrant_5_reg_t ro_start_addr_high_1_quadrant_5; // [1023:1008]
-    occamy_soc_reg2hw_ro_end_addr_low_1_quadrant_5_reg_t ro_end_addr_low_1_quadrant_5; // [1007:976]
-    occamy_soc_reg2hw_ro_end_addr_high_1_quadrant_5_reg_t ro_end_addr_high_1_quadrant_5; // [975:960]
-    occamy_soc_reg2hw_ro_start_addr_low_2_quadrant_5_reg_t ro_start_addr_low_2_quadrant_5; // [959:928]
-    occamy_soc_reg2hw_ro_start_addr_high_2_quadrant_5_reg_t ro_start_addr_high_2_quadrant_5; // [927:912]
-    occamy_soc_reg2hw_ro_end_addr_low_2_quadrant_5_reg_t ro_end_addr_low_2_quadrant_5; // [911:880]
-    occamy_soc_reg2hw_ro_end_addr_high_2_quadrant_5_reg_t ro_end_addr_high_2_quadrant_5; // [879:864]
-    occamy_soc_reg2hw_ro_start_addr_low_3_quadrant_5_reg_t ro_start_addr_low_3_quadrant_5; // [863:832]
-    occamy_soc_reg2hw_ro_start_addr_high_3_quadrant_5_reg_t ro_start_addr_high_3_quadrant_5; // [831:816]
-    occamy_soc_reg2hw_ro_end_addr_low_3_quadrant_5_reg_t ro_end_addr_low_3_quadrant_5; // [815:784]
-    occamy_soc_reg2hw_ro_end_addr_high_3_quadrant_5_reg_t ro_end_addr_high_3_quadrant_5; // [783:768]
-    occamy_soc_reg2hw_ro_start_addr_low_0_quadrant_6_reg_t ro_start_addr_low_0_quadrant_6; // [767:736]
-    occamy_soc_reg2hw_ro_start_addr_high_0_quadrant_6_reg_t ro_start_addr_high_0_quadrant_6; // [735:720]
-    occamy_soc_reg2hw_ro_end_addr_low_0_quadrant_6_reg_t ro_end_addr_low_0_quadrant_6; // [719:688]
-    occamy_soc_reg2hw_ro_end_addr_high_0_quadrant_6_reg_t ro_end_addr_high_0_quadrant_6; // [687:672]
-    occamy_soc_reg2hw_ro_start_addr_low_1_quadrant_6_reg_t ro_start_addr_low_1_quadrant_6; // [671:640]
-    occamy_soc_reg2hw_ro_start_addr_high_1_quadrant_6_reg_t ro_start_addr_high_1_quadrant_6; // [639:624]
-    occamy_soc_reg2hw_ro_end_addr_low_1_quadrant_6_reg_t ro_end_addr_low_1_quadrant_6; // [623:592]
-    occamy_soc_reg2hw_ro_end_addr_high_1_quadrant_6_reg_t ro_end_addr_high_1_quadrant_6; // [591:576]
-    occamy_soc_reg2hw_ro_start_addr_low_2_quadrant_6_reg_t ro_start_addr_low_2_quadrant_6; // [575:544]
-    occamy_soc_reg2hw_ro_start_addr_high_2_quadrant_6_reg_t ro_start_addr_high_2_quadrant_6; // [543:528]
-    occamy_soc_reg2hw_ro_end_addr_low_2_quadrant_6_reg_t ro_end_addr_low_2_quadrant_6; // [527:496]
-    occamy_soc_reg2hw_ro_end_addr_high_2_quadrant_6_reg_t ro_end_addr_high_2_quadrant_6; // [495:480]
-    occamy_soc_reg2hw_ro_start_addr_low_3_quadrant_6_reg_t ro_start_addr_low_3_quadrant_6; // [479:448]
-    occamy_soc_reg2hw_ro_start_addr_high_3_quadrant_6_reg_t ro_start_addr_high_3_quadrant_6; // [447:432]
-    occamy_soc_reg2hw_ro_end_addr_low_3_quadrant_6_reg_t ro_end_addr_low_3_quadrant_6; // [431:400]
-    occamy_soc_reg2hw_ro_end_addr_high_3_quadrant_6_reg_t ro_end_addr_high_3_quadrant_6; // [399:384]
-    occamy_soc_reg2hw_ro_start_addr_low_0_quadrant_7_reg_t ro_start_addr_low_0_quadrant_7; // [383:352]
-    occamy_soc_reg2hw_ro_start_addr_high_0_quadrant_7_reg_t ro_start_addr_high_0_quadrant_7; // [351:336]
-    occamy_soc_reg2hw_ro_end_addr_low_0_quadrant_7_reg_t ro_end_addr_low_0_quadrant_7; // [335:304]
-    occamy_soc_reg2hw_ro_end_addr_high_0_quadrant_7_reg_t ro_end_addr_high_0_quadrant_7; // [303:288]
-    occamy_soc_reg2hw_ro_start_addr_low_1_quadrant_7_reg_t ro_start_addr_low_1_quadrant_7; // [287:256]
-    occamy_soc_reg2hw_ro_start_addr_high_1_quadrant_7_reg_t ro_start_addr_high_1_quadrant_7; // [255:240]
-    occamy_soc_reg2hw_ro_end_addr_low_1_quadrant_7_reg_t ro_end_addr_low_1_quadrant_7; // [239:208]
-    occamy_soc_reg2hw_ro_end_addr_high_1_quadrant_7_reg_t ro_end_addr_high_1_quadrant_7; // [207:192]
-    occamy_soc_reg2hw_ro_start_addr_low_2_quadrant_7_reg_t ro_start_addr_low_2_quadrant_7; // [191:160]
-    occamy_soc_reg2hw_ro_start_addr_high_2_quadrant_7_reg_t ro_start_addr_high_2_quadrant_7; // [159:144]
-    occamy_soc_reg2hw_ro_end_addr_low_2_quadrant_7_reg_t ro_end_addr_low_2_quadrant_7; // [143:112]
-    occamy_soc_reg2hw_ro_end_addr_high_2_quadrant_7_reg_t ro_end_addr_high_2_quadrant_7; // [111:96]
-    occamy_soc_reg2hw_ro_start_addr_low_3_quadrant_7_reg_t ro_start_addr_low_3_quadrant_7; // [95:64]
-    occamy_soc_reg2hw_ro_start_addr_high_3_quadrant_7_reg_t ro_start_addr_high_3_quadrant_7; // [63:48]
-    occamy_soc_reg2hw_ro_end_addr_low_3_quadrant_7_reg_t ro_end_addr_low_3_quadrant_7; // [47:16]
-    occamy_soc_reg2hw_ro_end_addr_high_3_quadrant_7_reg_t ro_end_addr_high_3_quadrant_7; // [15:0]
+    occamy_soc_reg2hw_intr_state_reg_t intr_state; // [2477:2476]
+    occamy_soc_reg2hw_intr_enable_reg_t intr_enable; // [2475:2474]
+    occamy_soc_reg2hw_intr_test_reg_t intr_test; // [2473:2470]
+    occamy_soc_reg2hw_pad_mreg_t [30:0] pad; // [2469:2346]
+    occamy_soc_reg2hw_isolate_mreg_t [5:0] isolate; // [2345:2316]
+    occamy_soc_reg2hw_ro_cache_enable_mreg_t [5:0] ro_cache_enable; // [2315:2310]
+    occamy_soc_reg2hw_ro_cache_flush_mreg_t [5:0] ro_cache_flush; // [2309:2304]
+    occamy_soc_reg2hw_ro_start_addr_low_0_quadrant_0_reg_t ro_start_addr_low_0_quadrant_0; // [2303:2272]
+    occamy_soc_reg2hw_ro_start_addr_high_0_quadrant_0_reg_t ro_start_addr_high_0_quadrant_0; // [2271:2256]
+    occamy_soc_reg2hw_ro_end_addr_low_0_quadrant_0_reg_t ro_end_addr_low_0_quadrant_0; // [2255:2224]
+    occamy_soc_reg2hw_ro_end_addr_high_0_quadrant_0_reg_t ro_end_addr_high_0_quadrant_0; // [2223:2208]
+    occamy_soc_reg2hw_ro_start_addr_low_1_quadrant_0_reg_t ro_start_addr_low_1_quadrant_0; // [2207:2176]
+    occamy_soc_reg2hw_ro_start_addr_high_1_quadrant_0_reg_t ro_start_addr_high_1_quadrant_0; // [2175:2160]
+    occamy_soc_reg2hw_ro_end_addr_low_1_quadrant_0_reg_t ro_end_addr_low_1_quadrant_0; // [2159:2128]
+    occamy_soc_reg2hw_ro_end_addr_high_1_quadrant_0_reg_t ro_end_addr_high_1_quadrant_0; // [2127:2112]
+    occamy_soc_reg2hw_ro_start_addr_low_2_quadrant_0_reg_t ro_start_addr_low_2_quadrant_0; // [2111:2080]
+    occamy_soc_reg2hw_ro_start_addr_high_2_quadrant_0_reg_t ro_start_addr_high_2_quadrant_0; // [2079:2064]
+    occamy_soc_reg2hw_ro_end_addr_low_2_quadrant_0_reg_t ro_end_addr_low_2_quadrant_0; // [2063:2032]
+    occamy_soc_reg2hw_ro_end_addr_high_2_quadrant_0_reg_t ro_end_addr_high_2_quadrant_0; // [2031:2016]
+    occamy_soc_reg2hw_ro_start_addr_low_3_quadrant_0_reg_t ro_start_addr_low_3_quadrant_0; // [2015:1984]
+    occamy_soc_reg2hw_ro_start_addr_high_3_quadrant_0_reg_t ro_start_addr_high_3_quadrant_0; // [1983:1968]
+    occamy_soc_reg2hw_ro_end_addr_low_3_quadrant_0_reg_t ro_end_addr_low_3_quadrant_0; // [1967:1936]
+    occamy_soc_reg2hw_ro_end_addr_high_3_quadrant_0_reg_t ro_end_addr_high_3_quadrant_0; // [1935:1920]
+    occamy_soc_reg2hw_ro_start_addr_low_0_quadrant_1_reg_t ro_start_addr_low_0_quadrant_1; // [1919:1888]
+    occamy_soc_reg2hw_ro_start_addr_high_0_quadrant_1_reg_t ro_start_addr_high_0_quadrant_1; // [1887:1872]
+    occamy_soc_reg2hw_ro_end_addr_low_0_quadrant_1_reg_t ro_end_addr_low_0_quadrant_1; // [1871:1840]
+    occamy_soc_reg2hw_ro_end_addr_high_0_quadrant_1_reg_t ro_end_addr_high_0_quadrant_1; // [1839:1824]
+    occamy_soc_reg2hw_ro_start_addr_low_1_quadrant_1_reg_t ro_start_addr_low_1_quadrant_1; // [1823:1792]
+    occamy_soc_reg2hw_ro_start_addr_high_1_quadrant_1_reg_t ro_start_addr_high_1_quadrant_1; // [1791:1776]
+    occamy_soc_reg2hw_ro_end_addr_low_1_quadrant_1_reg_t ro_end_addr_low_1_quadrant_1; // [1775:1744]
+    occamy_soc_reg2hw_ro_end_addr_high_1_quadrant_1_reg_t ro_end_addr_high_1_quadrant_1; // [1743:1728]
+    occamy_soc_reg2hw_ro_start_addr_low_2_quadrant_1_reg_t ro_start_addr_low_2_quadrant_1; // [1727:1696]
+    occamy_soc_reg2hw_ro_start_addr_high_2_quadrant_1_reg_t ro_start_addr_high_2_quadrant_1; // [1695:1680]
+    occamy_soc_reg2hw_ro_end_addr_low_2_quadrant_1_reg_t ro_end_addr_low_2_quadrant_1; // [1679:1648]
+    occamy_soc_reg2hw_ro_end_addr_high_2_quadrant_1_reg_t ro_end_addr_high_2_quadrant_1; // [1647:1632]
+    occamy_soc_reg2hw_ro_start_addr_low_3_quadrant_1_reg_t ro_start_addr_low_3_quadrant_1; // [1631:1600]
+    occamy_soc_reg2hw_ro_start_addr_high_3_quadrant_1_reg_t ro_start_addr_high_3_quadrant_1; // [1599:1584]
+    occamy_soc_reg2hw_ro_end_addr_low_3_quadrant_1_reg_t ro_end_addr_low_3_quadrant_1; // [1583:1552]
+    occamy_soc_reg2hw_ro_end_addr_high_3_quadrant_1_reg_t ro_end_addr_high_3_quadrant_1; // [1551:1536]
+    occamy_soc_reg2hw_ro_start_addr_low_0_quadrant_2_reg_t ro_start_addr_low_0_quadrant_2; // [1535:1504]
+    occamy_soc_reg2hw_ro_start_addr_high_0_quadrant_2_reg_t ro_start_addr_high_0_quadrant_2; // [1503:1488]
+    occamy_soc_reg2hw_ro_end_addr_low_0_quadrant_2_reg_t ro_end_addr_low_0_quadrant_2; // [1487:1456]
+    occamy_soc_reg2hw_ro_end_addr_high_0_quadrant_2_reg_t ro_end_addr_high_0_quadrant_2; // [1455:1440]
+    occamy_soc_reg2hw_ro_start_addr_low_1_quadrant_2_reg_t ro_start_addr_low_1_quadrant_2; // [1439:1408]
+    occamy_soc_reg2hw_ro_start_addr_high_1_quadrant_2_reg_t ro_start_addr_high_1_quadrant_2; // [1407:1392]
+    occamy_soc_reg2hw_ro_end_addr_low_1_quadrant_2_reg_t ro_end_addr_low_1_quadrant_2; // [1391:1360]
+    occamy_soc_reg2hw_ro_end_addr_high_1_quadrant_2_reg_t ro_end_addr_high_1_quadrant_2; // [1359:1344]
+    occamy_soc_reg2hw_ro_start_addr_low_2_quadrant_2_reg_t ro_start_addr_low_2_quadrant_2; // [1343:1312]
+    occamy_soc_reg2hw_ro_start_addr_high_2_quadrant_2_reg_t ro_start_addr_high_2_quadrant_2; // [1311:1296]
+    occamy_soc_reg2hw_ro_end_addr_low_2_quadrant_2_reg_t ro_end_addr_low_2_quadrant_2; // [1295:1264]
+    occamy_soc_reg2hw_ro_end_addr_high_2_quadrant_2_reg_t ro_end_addr_high_2_quadrant_2; // [1263:1248]
+    occamy_soc_reg2hw_ro_start_addr_low_3_quadrant_2_reg_t ro_start_addr_low_3_quadrant_2; // [1247:1216]
+    occamy_soc_reg2hw_ro_start_addr_high_3_quadrant_2_reg_t ro_start_addr_high_3_quadrant_2; // [1215:1200]
+    occamy_soc_reg2hw_ro_end_addr_low_3_quadrant_2_reg_t ro_end_addr_low_3_quadrant_2; // [1199:1168]
+    occamy_soc_reg2hw_ro_end_addr_high_3_quadrant_2_reg_t ro_end_addr_high_3_quadrant_2; // [1167:1152]
+    occamy_soc_reg2hw_ro_start_addr_low_0_quadrant_3_reg_t ro_start_addr_low_0_quadrant_3; // [1151:1120]
+    occamy_soc_reg2hw_ro_start_addr_high_0_quadrant_3_reg_t ro_start_addr_high_0_quadrant_3; // [1119:1104]
+    occamy_soc_reg2hw_ro_end_addr_low_0_quadrant_3_reg_t ro_end_addr_low_0_quadrant_3; // [1103:1072]
+    occamy_soc_reg2hw_ro_end_addr_high_0_quadrant_3_reg_t ro_end_addr_high_0_quadrant_3; // [1071:1056]
+    occamy_soc_reg2hw_ro_start_addr_low_1_quadrant_3_reg_t ro_start_addr_low_1_quadrant_3; // [1055:1024]
+    occamy_soc_reg2hw_ro_start_addr_high_1_quadrant_3_reg_t ro_start_addr_high_1_quadrant_3; // [1023:1008]
+    occamy_soc_reg2hw_ro_end_addr_low_1_quadrant_3_reg_t ro_end_addr_low_1_quadrant_3; // [1007:976]
+    occamy_soc_reg2hw_ro_end_addr_high_1_quadrant_3_reg_t ro_end_addr_high_1_quadrant_3; // [975:960]
+    occamy_soc_reg2hw_ro_start_addr_low_2_quadrant_3_reg_t ro_start_addr_low_2_quadrant_3; // [959:928]
+    occamy_soc_reg2hw_ro_start_addr_high_2_quadrant_3_reg_t ro_start_addr_high_2_quadrant_3; // [927:912]
+    occamy_soc_reg2hw_ro_end_addr_low_2_quadrant_3_reg_t ro_end_addr_low_2_quadrant_3; // [911:880]
+    occamy_soc_reg2hw_ro_end_addr_high_2_quadrant_3_reg_t ro_end_addr_high_2_quadrant_3; // [879:864]
+    occamy_soc_reg2hw_ro_start_addr_low_3_quadrant_3_reg_t ro_start_addr_low_3_quadrant_3; // [863:832]
+    occamy_soc_reg2hw_ro_start_addr_high_3_quadrant_3_reg_t ro_start_addr_high_3_quadrant_3; // [831:816]
+    occamy_soc_reg2hw_ro_end_addr_low_3_quadrant_3_reg_t ro_end_addr_low_3_quadrant_3; // [815:784]
+    occamy_soc_reg2hw_ro_end_addr_high_3_quadrant_3_reg_t ro_end_addr_high_3_quadrant_3; // [783:768]
+    occamy_soc_reg2hw_ro_start_addr_low_0_quadrant_4_reg_t ro_start_addr_low_0_quadrant_4; // [767:736]
+    occamy_soc_reg2hw_ro_start_addr_high_0_quadrant_4_reg_t ro_start_addr_high_0_quadrant_4; // [735:720]
+    occamy_soc_reg2hw_ro_end_addr_low_0_quadrant_4_reg_t ro_end_addr_low_0_quadrant_4; // [719:688]
+    occamy_soc_reg2hw_ro_end_addr_high_0_quadrant_4_reg_t ro_end_addr_high_0_quadrant_4; // [687:672]
+    occamy_soc_reg2hw_ro_start_addr_low_1_quadrant_4_reg_t ro_start_addr_low_1_quadrant_4; // [671:640]
+    occamy_soc_reg2hw_ro_start_addr_high_1_quadrant_4_reg_t ro_start_addr_high_1_quadrant_4; // [639:624]
+    occamy_soc_reg2hw_ro_end_addr_low_1_quadrant_4_reg_t ro_end_addr_low_1_quadrant_4; // [623:592]
+    occamy_soc_reg2hw_ro_end_addr_high_1_quadrant_4_reg_t ro_end_addr_high_1_quadrant_4; // [591:576]
+    occamy_soc_reg2hw_ro_start_addr_low_2_quadrant_4_reg_t ro_start_addr_low_2_quadrant_4; // [575:544]
+    occamy_soc_reg2hw_ro_start_addr_high_2_quadrant_4_reg_t ro_start_addr_high_2_quadrant_4; // [543:528]
+    occamy_soc_reg2hw_ro_end_addr_low_2_quadrant_4_reg_t ro_end_addr_low_2_quadrant_4; // [527:496]
+    occamy_soc_reg2hw_ro_end_addr_high_2_quadrant_4_reg_t ro_end_addr_high_2_quadrant_4; // [495:480]
+    occamy_soc_reg2hw_ro_start_addr_low_3_quadrant_4_reg_t ro_start_addr_low_3_quadrant_4; // [479:448]
+    occamy_soc_reg2hw_ro_start_addr_high_3_quadrant_4_reg_t ro_start_addr_high_3_quadrant_4; // [447:432]
+    occamy_soc_reg2hw_ro_end_addr_low_3_quadrant_4_reg_t ro_end_addr_low_3_quadrant_4; // [431:400]
+    occamy_soc_reg2hw_ro_end_addr_high_3_quadrant_4_reg_t ro_end_addr_high_3_quadrant_4; // [399:384]
+    occamy_soc_reg2hw_ro_start_addr_low_0_quadrant_5_reg_t ro_start_addr_low_0_quadrant_5; // [383:352]
+    occamy_soc_reg2hw_ro_start_addr_high_0_quadrant_5_reg_t ro_start_addr_high_0_quadrant_5; // [351:336]
+    occamy_soc_reg2hw_ro_end_addr_low_0_quadrant_5_reg_t ro_end_addr_low_0_quadrant_5; // [335:304]
+    occamy_soc_reg2hw_ro_end_addr_high_0_quadrant_5_reg_t ro_end_addr_high_0_quadrant_5; // [303:288]
+    occamy_soc_reg2hw_ro_start_addr_low_1_quadrant_5_reg_t ro_start_addr_low_1_quadrant_5; // [287:256]
+    occamy_soc_reg2hw_ro_start_addr_high_1_quadrant_5_reg_t ro_start_addr_high_1_quadrant_5; // [255:240]
+    occamy_soc_reg2hw_ro_end_addr_low_1_quadrant_5_reg_t ro_end_addr_low_1_quadrant_5; // [239:208]
+    occamy_soc_reg2hw_ro_end_addr_high_1_quadrant_5_reg_t ro_end_addr_high_1_quadrant_5; // [207:192]
+    occamy_soc_reg2hw_ro_start_addr_low_2_quadrant_5_reg_t ro_start_addr_low_2_quadrant_5; // [191:160]
+    occamy_soc_reg2hw_ro_start_addr_high_2_quadrant_5_reg_t ro_start_addr_high_2_quadrant_5; // [159:144]
+    occamy_soc_reg2hw_ro_end_addr_low_2_quadrant_5_reg_t ro_end_addr_low_2_quadrant_5; // [143:112]
+    occamy_soc_reg2hw_ro_end_addr_high_2_quadrant_5_reg_t ro_end_addr_high_2_quadrant_5; // [111:96]
+    occamy_soc_reg2hw_ro_start_addr_low_3_quadrant_5_reg_t ro_start_addr_low_3_quadrant_5; // [95:64]
+    occamy_soc_reg2hw_ro_start_addr_high_3_quadrant_5_reg_t ro_start_addr_high_3_quadrant_5; // [63:48]
+    occamy_soc_reg2hw_ro_end_addr_low_3_quadrant_5_reg_t ro_end_addr_low_3_quadrant_5; // [47:16]
+    occamy_soc_reg2hw_ro_end_addr_high_3_quadrant_5_reg_t ro_end_addr_high_3_quadrant_5; // [15:0]
   } occamy_soc_reg2hw_t;
 
   // HW -> register type
   typedef struct packed {
-    occamy_soc_hw2reg_intr_state_reg_t intr_state; // [63:60]
-    occamy_soc_hw2reg_chip_id_reg_t chip_id; // [59:58]
-    occamy_soc_hw2reg_boot_mode_reg_t boot_mode; // [57:56]
-    occamy_soc_hw2reg_isolated_mreg_t [7:0] isolated; // [55:16]
-    occamy_soc_hw2reg_ro_cache_flush_mreg_t [7:0] ro_cache_flush; // [15:0]
+    occamy_soc_hw2reg_intr_state_reg_t intr_state; // [49:46]
+    occamy_soc_hw2reg_chip_id_reg_t chip_id; // [45:44]
+    occamy_soc_hw2reg_boot_mode_reg_t boot_mode; // [43:42]
+    occamy_soc_hw2reg_isolated_mreg_t [5:0] isolated; // [41:12]
+    occamy_soc_hw2reg_ro_cache_flush_mreg_t [5:0] ro_cache_flush; // [11:0]
   } occamy_soc_hw2reg_t;
 
   // Register offsets
@@ -801,12 +641,10 @@ package occamy_soc_reg_pkg;
   parameter logic [BlockAw-1:0] OCCAMY_SOC_PAD_28_OFFSET = 10'h 98;
   parameter logic [BlockAw-1:0] OCCAMY_SOC_PAD_29_OFFSET = 10'h 9c;
   parameter logic [BlockAw-1:0] OCCAMY_SOC_PAD_30_OFFSET = 10'h a0;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_ISOLATE_0_OFFSET = 10'h a4;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_ISOLATE_1_OFFSET = 10'h a8;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_ISOLATED_0_OFFSET = 10'h ac;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_ISOLATED_1_OFFSET = 10'h b0;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_CACHE_ENABLE_OFFSET = 10'h b4;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_CACHE_FLUSH_OFFSET = 10'h b8;
+  parameter logic [BlockAw-1:0] OCCAMY_SOC_ISOLATE_OFFSET = 10'h a4;
+  parameter logic [BlockAw-1:0] OCCAMY_SOC_ISOLATED_OFFSET = 10'h a8;
+  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_CACHE_ENABLE_OFFSET = 10'h ac;
+  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_CACHE_FLUSH_OFFSET = 10'h b0;
   parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_START_ADDR_LOW_0_QUADRANT_0_OFFSET = 10'h 100;
   parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_START_ADDR_HIGH_0_QUADRANT_0_OFFSET = 10'h 104;
   parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_END_ADDR_LOW_0_QUADRANT_0_OFFSET = 10'h 108;
@@ -903,38 +741,6 @@ package occamy_soc_reg_pkg;
   parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_START_ADDR_HIGH_3_QUADRANT_5_OFFSET = 10'h 274;
   parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_END_ADDR_LOW_3_QUADRANT_5_OFFSET = 10'h 278;
   parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_END_ADDR_HIGH_3_QUADRANT_5_OFFSET = 10'h 27c;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_START_ADDR_LOW_0_QUADRANT_6_OFFSET = 10'h 280;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_START_ADDR_HIGH_0_QUADRANT_6_OFFSET = 10'h 284;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_END_ADDR_LOW_0_QUADRANT_6_OFFSET = 10'h 288;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_END_ADDR_HIGH_0_QUADRANT_6_OFFSET = 10'h 28c;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_START_ADDR_LOW_1_QUADRANT_6_OFFSET = 10'h 290;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_START_ADDR_HIGH_1_QUADRANT_6_OFFSET = 10'h 294;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_END_ADDR_LOW_1_QUADRANT_6_OFFSET = 10'h 298;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_END_ADDR_HIGH_1_QUADRANT_6_OFFSET = 10'h 29c;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_START_ADDR_LOW_2_QUADRANT_6_OFFSET = 10'h 2a0;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_START_ADDR_HIGH_2_QUADRANT_6_OFFSET = 10'h 2a4;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_END_ADDR_LOW_2_QUADRANT_6_OFFSET = 10'h 2a8;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_END_ADDR_HIGH_2_QUADRANT_6_OFFSET = 10'h 2ac;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_START_ADDR_LOW_3_QUADRANT_6_OFFSET = 10'h 2b0;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_START_ADDR_HIGH_3_QUADRANT_6_OFFSET = 10'h 2b4;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_END_ADDR_LOW_3_QUADRANT_6_OFFSET = 10'h 2b8;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_END_ADDR_HIGH_3_QUADRANT_6_OFFSET = 10'h 2bc;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_START_ADDR_LOW_0_QUADRANT_7_OFFSET = 10'h 2c0;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_START_ADDR_HIGH_0_QUADRANT_7_OFFSET = 10'h 2c4;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_END_ADDR_LOW_0_QUADRANT_7_OFFSET = 10'h 2c8;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_END_ADDR_HIGH_0_QUADRANT_7_OFFSET = 10'h 2cc;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_START_ADDR_LOW_1_QUADRANT_7_OFFSET = 10'h 2d0;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_START_ADDR_HIGH_1_QUADRANT_7_OFFSET = 10'h 2d4;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_END_ADDR_LOW_1_QUADRANT_7_OFFSET = 10'h 2d8;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_END_ADDR_HIGH_1_QUADRANT_7_OFFSET = 10'h 2dc;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_START_ADDR_LOW_2_QUADRANT_7_OFFSET = 10'h 2e0;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_START_ADDR_HIGH_2_QUADRANT_7_OFFSET = 10'h 2e4;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_END_ADDR_LOW_2_QUADRANT_7_OFFSET = 10'h 2e8;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_END_ADDR_HIGH_2_QUADRANT_7_OFFSET = 10'h 2ec;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_START_ADDR_LOW_3_QUADRANT_7_OFFSET = 10'h 2f0;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_START_ADDR_HIGH_3_QUADRANT_7_OFFSET = 10'h 2f4;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_END_ADDR_LOW_3_QUADRANT_7_OFFSET = 10'h 2f8;
-  parameter logic [BlockAw-1:0] OCCAMY_SOC_RO_END_ADDR_HIGH_3_QUADRANT_7_OFFSET = 10'h 2fc;
 
   // Reset values for hwext registers and their fields
   parameter logic [1:0] OCCAMY_SOC_INTR_TEST_RESVAL = 2'h 0;
@@ -943,16 +749,13 @@ package occamy_soc_reg_pkg;
   parameter logic [1:0] OCCAMY_SOC_CHIP_ID_RESVAL = 2'h 0;
   parameter logic [1:0] OCCAMY_SOC_CHIP_ID_CHIP_ID_RESVAL = 2'h 0;
   parameter logic [1:0] OCCAMY_SOC_BOOT_MODE_RESVAL = 2'h 0;
-  parameter logic [29:0] OCCAMY_SOC_ISOLATED_0_RESVAL = 30'h 3fffffff;
-  parameter logic [4:0] OCCAMY_SOC_ISOLATED_0_ISOLATED_0_RESVAL = 5'h 1f;
-  parameter logic [4:0] OCCAMY_SOC_ISOLATED_0_ISOLATED_1_RESVAL = 5'h 1f;
-  parameter logic [4:0] OCCAMY_SOC_ISOLATED_0_ISOLATED_2_RESVAL = 5'h 1f;
-  parameter logic [4:0] OCCAMY_SOC_ISOLATED_0_ISOLATED_3_RESVAL = 5'h 1f;
-  parameter logic [4:0] OCCAMY_SOC_ISOLATED_0_ISOLATED_4_RESVAL = 5'h 1f;
-  parameter logic [4:0] OCCAMY_SOC_ISOLATED_0_ISOLATED_5_RESVAL = 5'h 1f;
-  parameter logic [9:0] OCCAMY_SOC_ISOLATED_1_RESVAL = 10'h 3ff;
-  parameter logic [4:0] OCCAMY_SOC_ISOLATED_1_ISOLATED_6_RESVAL = 5'h 1f;
-  parameter logic [4:0] OCCAMY_SOC_ISOLATED_1_ISOLATED_7_RESVAL = 5'h 1f;
+  parameter logic [29:0] OCCAMY_SOC_ISOLATED_RESVAL = 30'h 3fffffff;
+  parameter logic [4:0] OCCAMY_SOC_ISOLATED_ISOLATED_0_RESVAL = 5'h 1f;
+  parameter logic [4:0] OCCAMY_SOC_ISOLATED_ISOLATED_1_RESVAL = 5'h 1f;
+  parameter logic [4:0] OCCAMY_SOC_ISOLATED_ISOLATED_2_RESVAL = 5'h 1f;
+  parameter logic [4:0] OCCAMY_SOC_ISOLATED_ISOLATED_3_RESVAL = 5'h 1f;
+  parameter logic [4:0] OCCAMY_SOC_ISOLATED_ISOLATED_4_RESVAL = 5'h 1f;
+  parameter logic [4:0] OCCAMY_SOC_ISOLATED_ISOLATED_5_RESVAL = 5'h 1f;
 
   // Register index
   typedef enum int {
@@ -997,10 +800,8 @@ package occamy_soc_reg_pkg;
     OCCAMY_SOC_PAD_28,
     OCCAMY_SOC_PAD_29,
     OCCAMY_SOC_PAD_30,
-    OCCAMY_SOC_ISOLATE_0,
-    OCCAMY_SOC_ISOLATE_1,
-    OCCAMY_SOC_ISOLATED_0,
-    OCCAMY_SOC_ISOLATED_1,
+    OCCAMY_SOC_ISOLATE,
+    OCCAMY_SOC_ISOLATED,
     OCCAMY_SOC_RO_CACHE_ENABLE,
     OCCAMY_SOC_RO_CACHE_FLUSH,
     OCCAMY_SOC_RO_START_ADDR_LOW_0_QUADRANT_0,
@@ -1098,43 +899,11 @@ package occamy_soc_reg_pkg;
     OCCAMY_SOC_RO_START_ADDR_LOW_3_QUADRANT_5,
     OCCAMY_SOC_RO_START_ADDR_HIGH_3_QUADRANT_5,
     OCCAMY_SOC_RO_END_ADDR_LOW_3_QUADRANT_5,
-    OCCAMY_SOC_RO_END_ADDR_HIGH_3_QUADRANT_5,
-    OCCAMY_SOC_RO_START_ADDR_LOW_0_QUADRANT_6,
-    OCCAMY_SOC_RO_START_ADDR_HIGH_0_QUADRANT_6,
-    OCCAMY_SOC_RO_END_ADDR_LOW_0_QUADRANT_6,
-    OCCAMY_SOC_RO_END_ADDR_HIGH_0_QUADRANT_6,
-    OCCAMY_SOC_RO_START_ADDR_LOW_1_QUADRANT_6,
-    OCCAMY_SOC_RO_START_ADDR_HIGH_1_QUADRANT_6,
-    OCCAMY_SOC_RO_END_ADDR_LOW_1_QUADRANT_6,
-    OCCAMY_SOC_RO_END_ADDR_HIGH_1_QUADRANT_6,
-    OCCAMY_SOC_RO_START_ADDR_LOW_2_QUADRANT_6,
-    OCCAMY_SOC_RO_START_ADDR_HIGH_2_QUADRANT_6,
-    OCCAMY_SOC_RO_END_ADDR_LOW_2_QUADRANT_6,
-    OCCAMY_SOC_RO_END_ADDR_HIGH_2_QUADRANT_6,
-    OCCAMY_SOC_RO_START_ADDR_LOW_3_QUADRANT_6,
-    OCCAMY_SOC_RO_START_ADDR_HIGH_3_QUADRANT_6,
-    OCCAMY_SOC_RO_END_ADDR_LOW_3_QUADRANT_6,
-    OCCAMY_SOC_RO_END_ADDR_HIGH_3_QUADRANT_6,
-    OCCAMY_SOC_RO_START_ADDR_LOW_0_QUADRANT_7,
-    OCCAMY_SOC_RO_START_ADDR_HIGH_0_QUADRANT_7,
-    OCCAMY_SOC_RO_END_ADDR_LOW_0_QUADRANT_7,
-    OCCAMY_SOC_RO_END_ADDR_HIGH_0_QUADRANT_7,
-    OCCAMY_SOC_RO_START_ADDR_LOW_1_QUADRANT_7,
-    OCCAMY_SOC_RO_START_ADDR_HIGH_1_QUADRANT_7,
-    OCCAMY_SOC_RO_END_ADDR_LOW_1_QUADRANT_7,
-    OCCAMY_SOC_RO_END_ADDR_HIGH_1_QUADRANT_7,
-    OCCAMY_SOC_RO_START_ADDR_LOW_2_QUADRANT_7,
-    OCCAMY_SOC_RO_START_ADDR_HIGH_2_QUADRANT_7,
-    OCCAMY_SOC_RO_END_ADDR_LOW_2_QUADRANT_7,
-    OCCAMY_SOC_RO_END_ADDR_HIGH_2_QUADRANT_7,
-    OCCAMY_SOC_RO_START_ADDR_LOW_3_QUADRANT_7,
-    OCCAMY_SOC_RO_START_ADDR_HIGH_3_QUADRANT_7,
-    OCCAMY_SOC_RO_END_ADDR_LOW_3_QUADRANT_7,
-    OCCAMY_SOC_RO_END_ADDR_HIGH_3_QUADRANT_7
+    OCCAMY_SOC_RO_END_ADDR_HIGH_3_QUADRANT_5
   } occamy_soc_id_e;
 
   // Register width information to check illegal writes
-  parameter logic [3:0] OCCAMY_SOC_PERMIT [175] = '{
+  parameter logic [3:0] OCCAMY_SOC_PERMIT [141] = '{
     4'b 0001, // index[  0] OCCAMY_SOC_INTR_STATE
     4'b 0001, // index[  1] OCCAMY_SOC_INTR_ENABLE
     4'b 0001, // index[  2] OCCAMY_SOC_INTR_TEST
@@ -1176,140 +945,106 @@ package occamy_soc_reg_pkg;
     4'b 0001, // index[ 38] OCCAMY_SOC_PAD_28
     4'b 0001, // index[ 39] OCCAMY_SOC_PAD_29
     4'b 0001, // index[ 40] OCCAMY_SOC_PAD_30
-    4'b 1111, // index[ 41] OCCAMY_SOC_ISOLATE_0
-    4'b 0011, // index[ 42] OCCAMY_SOC_ISOLATE_1
-    4'b 1111, // index[ 43] OCCAMY_SOC_ISOLATED_0
-    4'b 0011, // index[ 44] OCCAMY_SOC_ISOLATED_1
-    4'b 0001, // index[ 45] OCCAMY_SOC_RO_CACHE_ENABLE
-    4'b 0001, // index[ 46] OCCAMY_SOC_RO_CACHE_FLUSH
-    4'b 1111, // index[ 47] OCCAMY_SOC_RO_START_ADDR_LOW_0_QUADRANT_0
-    4'b 0011, // index[ 48] OCCAMY_SOC_RO_START_ADDR_HIGH_0_QUADRANT_0
-    4'b 1111, // index[ 49] OCCAMY_SOC_RO_END_ADDR_LOW_0_QUADRANT_0
-    4'b 0011, // index[ 50] OCCAMY_SOC_RO_END_ADDR_HIGH_0_QUADRANT_0
-    4'b 1111, // index[ 51] OCCAMY_SOC_RO_START_ADDR_LOW_1_QUADRANT_0
-    4'b 0011, // index[ 52] OCCAMY_SOC_RO_START_ADDR_HIGH_1_QUADRANT_0
-    4'b 1111, // index[ 53] OCCAMY_SOC_RO_END_ADDR_LOW_1_QUADRANT_0
-    4'b 0011, // index[ 54] OCCAMY_SOC_RO_END_ADDR_HIGH_1_QUADRANT_0
-    4'b 1111, // index[ 55] OCCAMY_SOC_RO_START_ADDR_LOW_2_QUADRANT_0
-    4'b 0011, // index[ 56] OCCAMY_SOC_RO_START_ADDR_HIGH_2_QUADRANT_0
-    4'b 1111, // index[ 57] OCCAMY_SOC_RO_END_ADDR_LOW_2_QUADRANT_0
-    4'b 0011, // index[ 58] OCCAMY_SOC_RO_END_ADDR_HIGH_2_QUADRANT_0
-    4'b 1111, // index[ 59] OCCAMY_SOC_RO_START_ADDR_LOW_3_QUADRANT_0
-    4'b 0011, // index[ 60] OCCAMY_SOC_RO_START_ADDR_HIGH_3_QUADRANT_0
-    4'b 1111, // index[ 61] OCCAMY_SOC_RO_END_ADDR_LOW_3_QUADRANT_0
-    4'b 0011, // index[ 62] OCCAMY_SOC_RO_END_ADDR_HIGH_3_QUADRANT_0
-    4'b 1111, // index[ 63] OCCAMY_SOC_RO_START_ADDR_LOW_0_QUADRANT_1
-    4'b 0011, // index[ 64] OCCAMY_SOC_RO_START_ADDR_HIGH_0_QUADRANT_1
-    4'b 1111, // index[ 65] OCCAMY_SOC_RO_END_ADDR_LOW_0_QUADRANT_1
-    4'b 0011, // index[ 66] OCCAMY_SOC_RO_END_ADDR_HIGH_0_QUADRANT_1
-    4'b 1111, // index[ 67] OCCAMY_SOC_RO_START_ADDR_LOW_1_QUADRANT_1
-    4'b 0011, // index[ 68] OCCAMY_SOC_RO_START_ADDR_HIGH_1_QUADRANT_1
-    4'b 1111, // index[ 69] OCCAMY_SOC_RO_END_ADDR_LOW_1_QUADRANT_1
-    4'b 0011, // index[ 70] OCCAMY_SOC_RO_END_ADDR_HIGH_1_QUADRANT_1
-    4'b 1111, // index[ 71] OCCAMY_SOC_RO_START_ADDR_LOW_2_QUADRANT_1
-    4'b 0011, // index[ 72] OCCAMY_SOC_RO_START_ADDR_HIGH_2_QUADRANT_1
-    4'b 1111, // index[ 73] OCCAMY_SOC_RO_END_ADDR_LOW_2_QUADRANT_1
-    4'b 0011, // index[ 74] OCCAMY_SOC_RO_END_ADDR_HIGH_2_QUADRANT_1
-    4'b 1111, // index[ 75] OCCAMY_SOC_RO_START_ADDR_LOW_3_QUADRANT_1
-    4'b 0011, // index[ 76] OCCAMY_SOC_RO_START_ADDR_HIGH_3_QUADRANT_1
-    4'b 1111, // index[ 77] OCCAMY_SOC_RO_END_ADDR_LOW_3_QUADRANT_1
-    4'b 0011, // index[ 78] OCCAMY_SOC_RO_END_ADDR_HIGH_3_QUADRANT_1
-    4'b 1111, // index[ 79] OCCAMY_SOC_RO_START_ADDR_LOW_0_QUADRANT_2
-    4'b 0011, // index[ 80] OCCAMY_SOC_RO_START_ADDR_HIGH_0_QUADRANT_2
-    4'b 1111, // index[ 81] OCCAMY_SOC_RO_END_ADDR_LOW_0_QUADRANT_2
-    4'b 0011, // index[ 82] OCCAMY_SOC_RO_END_ADDR_HIGH_0_QUADRANT_2
-    4'b 1111, // index[ 83] OCCAMY_SOC_RO_START_ADDR_LOW_1_QUADRANT_2
-    4'b 0011, // index[ 84] OCCAMY_SOC_RO_START_ADDR_HIGH_1_QUADRANT_2
-    4'b 1111, // index[ 85] OCCAMY_SOC_RO_END_ADDR_LOW_1_QUADRANT_2
-    4'b 0011, // index[ 86] OCCAMY_SOC_RO_END_ADDR_HIGH_1_QUADRANT_2
-    4'b 1111, // index[ 87] OCCAMY_SOC_RO_START_ADDR_LOW_2_QUADRANT_2
-    4'b 0011, // index[ 88] OCCAMY_SOC_RO_START_ADDR_HIGH_2_QUADRANT_2
-    4'b 1111, // index[ 89] OCCAMY_SOC_RO_END_ADDR_LOW_2_QUADRANT_2
-    4'b 0011, // index[ 90] OCCAMY_SOC_RO_END_ADDR_HIGH_2_QUADRANT_2
-    4'b 1111, // index[ 91] OCCAMY_SOC_RO_START_ADDR_LOW_3_QUADRANT_2
-    4'b 0011, // index[ 92] OCCAMY_SOC_RO_START_ADDR_HIGH_3_QUADRANT_2
-    4'b 1111, // index[ 93] OCCAMY_SOC_RO_END_ADDR_LOW_3_QUADRANT_2
-    4'b 0011, // index[ 94] OCCAMY_SOC_RO_END_ADDR_HIGH_3_QUADRANT_2
-    4'b 1111, // index[ 95] OCCAMY_SOC_RO_START_ADDR_LOW_0_QUADRANT_3
-    4'b 0011, // index[ 96] OCCAMY_SOC_RO_START_ADDR_HIGH_0_QUADRANT_3
-    4'b 1111, // index[ 97] OCCAMY_SOC_RO_END_ADDR_LOW_0_QUADRANT_3
-    4'b 0011, // index[ 98] OCCAMY_SOC_RO_END_ADDR_HIGH_0_QUADRANT_3
-    4'b 1111, // index[ 99] OCCAMY_SOC_RO_START_ADDR_LOW_1_QUADRANT_3
-    4'b 0011, // index[100] OCCAMY_SOC_RO_START_ADDR_HIGH_1_QUADRANT_3
-    4'b 1111, // index[101] OCCAMY_SOC_RO_END_ADDR_LOW_1_QUADRANT_3
-    4'b 0011, // index[102] OCCAMY_SOC_RO_END_ADDR_HIGH_1_QUADRANT_3
-    4'b 1111, // index[103] OCCAMY_SOC_RO_START_ADDR_LOW_2_QUADRANT_3
-    4'b 0011, // index[104] OCCAMY_SOC_RO_START_ADDR_HIGH_2_QUADRANT_3
-    4'b 1111, // index[105] OCCAMY_SOC_RO_END_ADDR_LOW_2_QUADRANT_3
-    4'b 0011, // index[106] OCCAMY_SOC_RO_END_ADDR_HIGH_2_QUADRANT_3
-    4'b 1111, // index[107] OCCAMY_SOC_RO_START_ADDR_LOW_3_QUADRANT_3
-    4'b 0011, // index[108] OCCAMY_SOC_RO_START_ADDR_HIGH_3_QUADRANT_3
-    4'b 1111, // index[109] OCCAMY_SOC_RO_END_ADDR_LOW_3_QUADRANT_3
-    4'b 0011, // index[110] OCCAMY_SOC_RO_END_ADDR_HIGH_3_QUADRANT_3
-    4'b 1111, // index[111] OCCAMY_SOC_RO_START_ADDR_LOW_0_QUADRANT_4
-    4'b 0011, // index[112] OCCAMY_SOC_RO_START_ADDR_HIGH_0_QUADRANT_4
-    4'b 1111, // index[113] OCCAMY_SOC_RO_END_ADDR_LOW_0_QUADRANT_4
-    4'b 0011, // index[114] OCCAMY_SOC_RO_END_ADDR_HIGH_0_QUADRANT_4
-    4'b 1111, // index[115] OCCAMY_SOC_RO_START_ADDR_LOW_1_QUADRANT_4
-    4'b 0011, // index[116] OCCAMY_SOC_RO_START_ADDR_HIGH_1_QUADRANT_4
-    4'b 1111, // index[117] OCCAMY_SOC_RO_END_ADDR_LOW_1_QUADRANT_4
-    4'b 0011, // index[118] OCCAMY_SOC_RO_END_ADDR_HIGH_1_QUADRANT_4
-    4'b 1111, // index[119] OCCAMY_SOC_RO_START_ADDR_LOW_2_QUADRANT_4
-    4'b 0011, // index[120] OCCAMY_SOC_RO_START_ADDR_HIGH_2_QUADRANT_4
-    4'b 1111, // index[121] OCCAMY_SOC_RO_END_ADDR_LOW_2_QUADRANT_4
-    4'b 0011, // index[122] OCCAMY_SOC_RO_END_ADDR_HIGH_2_QUADRANT_4
-    4'b 1111, // index[123] OCCAMY_SOC_RO_START_ADDR_LOW_3_QUADRANT_4
-    4'b 0011, // index[124] OCCAMY_SOC_RO_START_ADDR_HIGH_3_QUADRANT_4
-    4'b 1111, // index[125] OCCAMY_SOC_RO_END_ADDR_LOW_3_QUADRANT_4
-    4'b 0011, // index[126] OCCAMY_SOC_RO_END_ADDR_HIGH_3_QUADRANT_4
-    4'b 1111, // index[127] OCCAMY_SOC_RO_START_ADDR_LOW_0_QUADRANT_5
-    4'b 0011, // index[128] OCCAMY_SOC_RO_START_ADDR_HIGH_0_QUADRANT_5
-    4'b 1111, // index[129] OCCAMY_SOC_RO_END_ADDR_LOW_0_QUADRANT_5
-    4'b 0011, // index[130] OCCAMY_SOC_RO_END_ADDR_HIGH_0_QUADRANT_5
-    4'b 1111, // index[131] OCCAMY_SOC_RO_START_ADDR_LOW_1_QUADRANT_5
-    4'b 0011, // index[132] OCCAMY_SOC_RO_START_ADDR_HIGH_1_QUADRANT_5
-    4'b 1111, // index[133] OCCAMY_SOC_RO_END_ADDR_LOW_1_QUADRANT_5
-    4'b 0011, // index[134] OCCAMY_SOC_RO_END_ADDR_HIGH_1_QUADRANT_5
-    4'b 1111, // index[135] OCCAMY_SOC_RO_START_ADDR_LOW_2_QUADRANT_5
-    4'b 0011, // index[136] OCCAMY_SOC_RO_START_ADDR_HIGH_2_QUADRANT_5
-    4'b 1111, // index[137] OCCAMY_SOC_RO_END_ADDR_LOW_2_QUADRANT_5
-    4'b 0011, // index[138] OCCAMY_SOC_RO_END_ADDR_HIGH_2_QUADRANT_5
-    4'b 1111, // index[139] OCCAMY_SOC_RO_START_ADDR_LOW_3_QUADRANT_5
-    4'b 0011, // index[140] OCCAMY_SOC_RO_START_ADDR_HIGH_3_QUADRANT_5
-    4'b 1111, // index[141] OCCAMY_SOC_RO_END_ADDR_LOW_3_QUADRANT_5
-    4'b 0011, // index[142] OCCAMY_SOC_RO_END_ADDR_HIGH_3_QUADRANT_5
-    4'b 1111, // index[143] OCCAMY_SOC_RO_START_ADDR_LOW_0_QUADRANT_6
-    4'b 0011, // index[144] OCCAMY_SOC_RO_START_ADDR_HIGH_0_QUADRANT_6
-    4'b 1111, // index[145] OCCAMY_SOC_RO_END_ADDR_LOW_0_QUADRANT_6
-    4'b 0011, // index[146] OCCAMY_SOC_RO_END_ADDR_HIGH_0_QUADRANT_6
-    4'b 1111, // index[147] OCCAMY_SOC_RO_START_ADDR_LOW_1_QUADRANT_6
-    4'b 0011, // index[148] OCCAMY_SOC_RO_START_ADDR_HIGH_1_QUADRANT_6
-    4'b 1111, // index[149] OCCAMY_SOC_RO_END_ADDR_LOW_1_QUADRANT_6
-    4'b 0011, // index[150] OCCAMY_SOC_RO_END_ADDR_HIGH_1_QUADRANT_6
-    4'b 1111, // index[151] OCCAMY_SOC_RO_START_ADDR_LOW_2_QUADRANT_6
-    4'b 0011, // index[152] OCCAMY_SOC_RO_START_ADDR_HIGH_2_QUADRANT_6
-    4'b 1111, // index[153] OCCAMY_SOC_RO_END_ADDR_LOW_2_QUADRANT_6
-    4'b 0011, // index[154] OCCAMY_SOC_RO_END_ADDR_HIGH_2_QUADRANT_6
-    4'b 1111, // index[155] OCCAMY_SOC_RO_START_ADDR_LOW_3_QUADRANT_6
-    4'b 0011, // index[156] OCCAMY_SOC_RO_START_ADDR_HIGH_3_QUADRANT_6
-    4'b 1111, // index[157] OCCAMY_SOC_RO_END_ADDR_LOW_3_QUADRANT_6
-    4'b 0011, // index[158] OCCAMY_SOC_RO_END_ADDR_HIGH_3_QUADRANT_6
-    4'b 1111, // index[159] OCCAMY_SOC_RO_START_ADDR_LOW_0_QUADRANT_7
-    4'b 0011, // index[160] OCCAMY_SOC_RO_START_ADDR_HIGH_0_QUADRANT_7
-    4'b 1111, // index[161] OCCAMY_SOC_RO_END_ADDR_LOW_0_QUADRANT_7
-    4'b 0011, // index[162] OCCAMY_SOC_RO_END_ADDR_HIGH_0_QUADRANT_7
-    4'b 1111, // index[163] OCCAMY_SOC_RO_START_ADDR_LOW_1_QUADRANT_7
-    4'b 0011, // index[164] OCCAMY_SOC_RO_START_ADDR_HIGH_1_QUADRANT_7
-    4'b 1111, // index[165] OCCAMY_SOC_RO_END_ADDR_LOW_1_QUADRANT_7
-    4'b 0011, // index[166] OCCAMY_SOC_RO_END_ADDR_HIGH_1_QUADRANT_7
-    4'b 1111, // index[167] OCCAMY_SOC_RO_START_ADDR_LOW_2_QUADRANT_7
-    4'b 0011, // index[168] OCCAMY_SOC_RO_START_ADDR_HIGH_2_QUADRANT_7
-    4'b 1111, // index[169] OCCAMY_SOC_RO_END_ADDR_LOW_2_QUADRANT_7
-    4'b 0011, // index[170] OCCAMY_SOC_RO_END_ADDR_HIGH_2_QUADRANT_7
-    4'b 1111, // index[171] OCCAMY_SOC_RO_START_ADDR_LOW_3_QUADRANT_7
-    4'b 0011, // index[172] OCCAMY_SOC_RO_START_ADDR_HIGH_3_QUADRANT_7
-    4'b 1111, // index[173] OCCAMY_SOC_RO_END_ADDR_LOW_3_QUADRANT_7
-    4'b 0011  // index[174] OCCAMY_SOC_RO_END_ADDR_HIGH_3_QUADRANT_7
+    4'b 1111, // index[ 41] OCCAMY_SOC_ISOLATE
+    4'b 1111, // index[ 42] OCCAMY_SOC_ISOLATED
+    4'b 0001, // index[ 43] OCCAMY_SOC_RO_CACHE_ENABLE
+    4'b 0001, // index[ 44] OCCAMY_SOC_RO_CACHE_FLUSH
+    4'b 1111, // index[ 45] OCCAMY_SOC_RO_START_ADDR_LOW_0_QUADRANT_0
+    4'b 0011, // index[ 46] OCCAMY_SOC_RO_START_ADDR_HIGH_0_QUADRANT_0
+    4'b 1111, // index[ 47] OCCAMY_SOC_RO_END_ADDR_LOW_0_QUADRANT_0
+    4'b 0011, // index[ 48] OCCAMY_SOC_RO_END_ADDR_HIGH_0_QUADRANT_0
+    4'b 1111, // index[ 49] OCCAMY_SOC_RO_START_ADDR_LOW_1_QUADRANT_0
+    4'b 0011, // index[ 50] OCCAMY_SOC_RO_START_ADDR_HIGH_1_QUADRANT_0
+    4'b 1111, // index[ 51] OCCAMY_SOC_RO_END_ADDR_LOW_1_QUADRANT_0
+    4'b 0011, // index[ 52] OCCAMY_SOC_RO_END_ADDR_HIGH_1_QUADRANT_0
+    4'b 1111, // index[ 53] OCCAMY_SOC_RO_START_ADDR_LOW_2_QUADRANT_0
+    4'b 0011, // index[ 54] OCCAMY_SOC_RO_START_ADDR_HIGH_2_QUADRANT_0
+    4'b 1111, // index[ 55] OCCAMY_SOC_RO_END_ADDR_LOW_2_QUADRANT_0
+    4'b 0011, // index[ 56] OCCAMY_SOC_RO_END_ADDR_HIGH_2_QUADRANT_0
+    4'b 1111, // index[ 57] OCCAMY_SOC_RO_START_ADDR_LOW_3_QUADRANT_0
+    4'b 0011, // index[ 58] OCCAMY_SOC_RO_START_ADDR_HIGH_3_QUADRANT_0
+    4'b 1111, // index[ 59] OCCAMY_SOC_RO_END_ADDR_LOW_3_QUADRANT_0
+    4'b 0011, // index[ 60] OCCAMY_SOC_RO_END_ADDR_HIGH_3_QUADRANT_0
+    4'b 1111, // index[ 61] OCCAMY_SOC_RO_START_ADDR_LOW_0_QUADRANT_1
+    4'b 0011, // index[ 62] OCCAMY_SOC_RO_START_ADDR_HIGH_0_QUADRANT_1
+    4'b 1111, // index[ 63] OCCAMY_SOC_RO_END_ADDR_LOW_0_QUADRANT_1
+    4'b 0011, // index[ 64] OCCAMY_SOC_RO_END_ADDR_HIGH_0_QUADRANT_1
+    4'b 1111, // index[ 65] OCCAMY_SOC_RO_START_ADDR_LOW_1_QUADRANT_1
+    4'b 0011, // index[ 66] OCCAMY_SOC_RO_START_ADDR_HIGH_1_QUADRANT_1
+    4'b 1111, // index[ 67] OCCAMY_SOC_RO_END_ADDR_LOW_1_QUADRANT_1
+    4'b 0011, // index[ 68] OCCAMY_SOC_RO_END_ADDR_HIGH_1_QUADRANT_1
+    4'b 1111, // index[ 69] OCCAMY_SOC_RO_START_ADDR_LOW_2_QUADRANT_1
+    4'b 0011, // index[ 70] OCCAMY_SOC_RO_START_ADDR_HIGH_2_QUADRANT_1
+    4'b 1111, // index[ 71] OCCAMY_SOC_RO_END_ADDR_LOW_2_QUADRANT_1
+    4'b 0011, // index[ 72] OCCAMY_SOC_RO_END_ADDR_HIGH_2_QUADRANT_1
+    4'b 1111, // index[ 73] OCCAMY_SOC_RO_START_ADDR_LOW_3_QUADRANT_1
+    4'b 0011, // index[ 74] OCCAMY_SOC_RO_START_ADDR_HIGH_3_QUADRANT_1
+    4'b 1111, // index[ 75] OCCAMY_SOC_RO_END_ADDR_LOW_3_QUADRANT_1
+    4'b 0011, // index[ 76] OCCAMY_SOC_RO_END_ADDR_HIGH_3_QUADRANT_1
+    4'b 1111, // index[ 77] OCCAMY_SOC_RO_START_ADDR_LOW_0_QUADRANT_2
+    4'b 0011, // index[ 78] OCCAMY_SOC_RO_START_ADDR_HIGH_0_QUADRANT_2
+    4'b 1111, // index[ 79] OCCAMY_SOC_RO_END_ADDR_LOW_0_QUADRANT_2
+    4'b 0011, // index[ 80] OCCAMY_SOC_RO_END_ADDR_HIGH_0_QUADRANT_2
+    4'b 1111, // index[ 81] OCCAMY_SOC_RO_START_ADDR_LOW_1_QUADRANT_2
+    4'b 0011, // index[ 82] OCCAMY_SOC_RO_START_ADDR_HIGH_1_QUADRANT_2
+    4'b 1111, // index[ 83] OCCAMY_SOC_RO_END_ADDR_LOW_1_QUADRANT_2
+    4'b 0011, // index[ 84] OCCAMY_SOC_RO_END_ADDR_HIGH_1_QUADRANT_2
+    4'b 1111, // index[ 85] OCCAMY_SOC_RO_START_ADDR_LOW_2_QUADRANT_2
+    4'b 0011, // index[ 86] OCCAMY_SOC_RO_START_ADDR_HIGH_2_QUADRANT_2
+    4'b 1111, // index[ 87] OCCAMY_SOC_RO_END_ADDR_LOW_2_QUADRANT_2
+    4'b 0011, // index[ 88] OCCAMY_SOC_RO_END_ADDR_HIGH_2_QUADRANT_2
+    4'b 1111, // index[ 89] OCCAMY_SOC_RO_START_ADDR_LOW_3_QUADRANT_2
+    4'b 0011, // index[ 90] OCCAMY_SOC_RO_START_ADDR_HIGH_3_QUADRANT_2
+    4'b 1111, // index[ 91] OCCAMY_SOC_RO_END_ADDR_LOW_3_QUADRANT_2
+    4'b 0011, // index[ 92] OCCAMY_SOC_RO_END_ADDR_HIGH_3_QUADRANT_2
+    4'b 1111, // index[ 93] OCCAMY_SOC_RO_START_ADDR_LOW_0_QUADRANT_3
+    4'b 0011, // index[ 94] OCCAMY_SOC_RO_START_ADDR_HIGH_0_QUADRANT_3
+    4'b 1111, // index[ 95] OCCAMY_SOC_RO_END_ADDR_LOW_0_QUADRANT_3
+    4'b 0011, // index[ 96] OCCAMY_SOC_RO_END_ADDR_HIGH_0_QUADRANT_3
+    4'b 1111, // index[ 97] OCCAMY_SOC_RO_START_ADDR_LOW_1_QUADRANT_3
+    4'b 0011, // index[ 98] OCCAMY_SOC_RO_START_ADDR_HIGH_1_QUADRANT_3
+    4'b 1111, // index[ 99] OCCAMY_SOC_RO_END_ADDR_LOW_1_QUADRANT_3
+    4'b 0011, // index[100] OCCAMY_SOC_RO_END_ADDR_HIGH_1_QUADRANT_3
+    4'b 1111, // index[101] OCCAMY_SOC_RO_START_ADDR_LOW_2_QUADRANT_3
+    4'b 0011, // index[102] OCCAMY_SOC_RO_START_ADDR_HIGH_2_QUADRANT_3
+    4'b 1111, // index[103] OCCAMY_SOC_RO_END_ADDR_LOW_2_QUADRANT_3
+    4'b 0011, // index[104] OCCAMY_SOC_RO_END_ADDR_HIGH_2_QUADRANT_3
+    4'b 1111, // index[105] OCCAMY_SOC_RO_START_ADDR_LOW_3_QUADRANT_3
+    4'b 0011, // index[106] OCCAMY_SOC_RO_START_ADDR_HIGH_3_QUADRANT_3
+    4'b 1111, // index[107] OCCAMY_SOC_RO_END_ADDR_LOW_3_QUADRANT_3
+    4'b 0011, // index[108] OCCAMY_SOC_RO_END_ADDR_HIGH_3_QUADRANT_3
+    4'b 1111, // index[109] OCCAMY_SOC_RO_START_ADDR_LOW_0_QUADRANT_4
+    4'b 0011, // index[110] OCCAMY_SOC_RO_START_ADDR_HIGH_0_QUADRANT_4
+    4'b 1111, // index[111] OCCAMY_SOC_RO_END_ADDR_LOW_0_QUADRANT_4
+    4'b 0011, // index[112] OCCAMY_SOC_RO_END_ADDR_HIGH_0_QUADRANT_4
+    4'b 1111, // index[113] OCCAMY_SOC_RO_START_ADDR_LOW_1_QUADRANT_4
+    4'b 0011, // index[114] OCCAMY_SOC_RO_START_ADDR_HIGH_1_QUADRANT_4
+    4'b 1111, // index[115] OCCAMY_SOC_RO_END_ADDR_LOW_1_QUADRANT_4
+    4'b 0011, // index[116] OCCAMY_SOC_RO_END_ADDR_HIGH_1_QUADRANT_4
+    4'b 1111, // index[117] OCCAMY_SOC_RO_START_ADDR_LOW_2_QUADRANT_4
+    4'b 0011, // index[118] OCCAMY_SOC_RO_START_ADDR_HIGH_2_QUADRANT_4
+    4'b 1111, // index[119] OCCAMY_SOC_RO_END_ADDR_LOW_2_QUADRANT_4
+    4'b 0011, // index[120] OCCAMY_SOC_RO_END_ADDR_HIGH_2_QUADRANT_4
+    4'b 1111, // index[121] OCCAMY_SOC_RO_START_ADDR_LOW_3_QUADRANT_4
+    4'b 0011, // index[122] OCCAMY_SOC_RO_START_ADDR_HIGH_3_QUADRANT_4
+    4'b 1111, // index[123] OCCAMY_SOC_RO_END_ADDR_LOW_3_QUADRANT_4
+    4'b 0011, // index[124] OCCAMY_SOC_RO_END_ADDR_HIGH_3_QUADRANT_4
+    4'b 1111, // index[125] OCCAMY_SOC_RO_START_ADDR_LOW_0_QUADRANT_5
+    4'b 0011, // index[126] OCCAMY_SOC_RO_START_ADDR_HIGH_0_QUADRANT_5
+    4'b 1111, // index[127] OCCAMY_SOC_RO_END_ADDR_LOW_0_QUADRANT_5
+    4'b 0011, // index[128] OCCAMY_SOC_RO_END_ADDR_HIGH_0_QUADRANT_5
+    4'b 1111, // index[129] OCCAMY_SOC_RO_START_ADDR_LOW_1_QUADRANT_5
+    4'b 0011, // index[130] OCCAMY_SOC_RO_START_ADDR_HIGH_1_QUADRANT_5
+    4'b 1111, // index[131] OCCAMY_SOC_RO_END_ADDR_LOW_1_QUADRANT_5
+    4'b 0011, // index[132] OCCAMY_SOC_RO_END_ADDR_HIGH_1_QUADRANT_5
+    4'b 1111, // index[133] OCCAMY_SOC_RO_START_ADDR_LOW_2_QUADRANT_5
+    4'b 0011, // index[134] OCCAMY_SOC_RO_START_ADDR_HIGH_2_QUADRANT_5
+    4'b 1111, // index[135] OCCAMY_SOC_RO_END_ADDR_LOW_2_QUADRANT_5
+    4'b 0011, // index[136] OCCAMY_SOC_RO_END_ADDR_HIGH_2_QUADRANT_5
+    4'b 1111, // index[137] OCCAMY_SOC_RO_START_ADDR_LOW_3_QUADRANT_5
+    4'b 0011, // index[138] OCCAMY_SOC_RO_START_ADDR_HIGH_3_QUADRANT_5
+    4'b 1111, // index[139] OCCAMY_SOC_RO_END_ADDR_LOW_3_QUADRANT_5
+    4'b 0011  // index[140] OCCAMY_SOC_RO_END_ADDR_HIGH_3_QUADRANT_5
   };
 
 endpackage
