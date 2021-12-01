@@ -219,8 +219,6 @@ package occamy_pkg;
     SOC_WIDE_XBAR_IN_S1_QUADRANT_3,
     SOC_WIDE_XBAR_IN_S1_QUADRANT_4,
     SOC_WIDE_XBAR_IN_S1_QUADRANT_5,
-    SOC_WIDE_XBAR_IN_S1_QUADRANT_6,
-    SOC_WIDE_XBAR_IN_S1_QUADRANT_7,
     SOC_WIDE_XBAR_IN_HBI_0,
     SOC_WIDE_XBAR_IN_HBI_1,
     SOC_WIDE_XBAR_IN_HBI_2,
@@ -228,8 +226,6 @@ package occamy_pkg;
     SOC_WIDE_XBAR_IN_HBI_4,
     SOC_WIDE_XBAR_IN_HBI_5,
     SOC_WIDE_XBAR_IN_HBI_6,
-    SOC_WIDE_XBAR_IN_HBI_7,
-    SOC_WIDE_XBAR_IN_HBI_8,
     SOC_WIDE_XBAR_IN_SOC_NARROW,
     SOC_WIDE_XBAR_IN_PCIE,
     SOC_WIDE_XBAR_NUM_INPUTS
@@ -243,8 +239,6 @@ package occamy_pkg;
     SOC_WIDE_XBAR_OUT_S1_QUADRANT_3,
     SOC_WIDE_XBAR_OUT_S1_QUADRANT_4,
     SOC_WIDE_XBAR_OUT_S1_QUADRANT_5,
-    SOC_WIDE_XBAR_OUT_S1_QUADRANT_6,
-    SOC_WIDE_XBAR_OUT_S1_QUADRANT_7,
     SOC_WIDE_XBAR_OUT_HBM_0,
     SOC_WIDE_XBAR_OUT_HBM_1,
     SOC_WIDE_XBAR_OUT_HBM_2,
@@ -253,7 +247,7 @@ package occamy_pkg;
     SOC_WIDE_XBAR_OUT_HBM_5,
     SOC_WIDE_XBAR_OUT_HBM_6,
     SOC_WIDE_XBAR_OUT_HBM_7,
-    SOC_WIDE_XBAR_OUT_HBI_8,
+    SOC_WIDE_XBAR_OUT_HBI_6,
     SOC_WIDE_XBAR_OUT_SOC_NARROW,
     SOC_WIDE_XBAR_OUT_PCIE,
     SOC_WIDE_XBAR_NUM_OUTPUTS
@@ -271,36 +265,36 @@ package occamy_pkg;
   AxiIdUsedSlvPorts:  4,
   AxiAddrWidth:       48,
   AxiDataWidth:       512,
-  NoAddrRules:        22
+  NoAddrRules:        20
 };
 
   // AXI bus with 48 bit address, 512 bit data, 4 bit IDs, and 0 bit user data.
   `AXI_TYPEDEF_ALL(axi_a48_d512_i4_u0, logic [47:0], logic [3:0], logic [511:0], logic [63:0],
                    logic [0:0])
 
-  // AXI bus with 48 bit address, 512 bit data, 9 bit IDs, and 0 bit user data.
-  `AXI_TYPEDEF_ALL(axi_a48_d512_i9_u0, logic [47:0], logic [8:0], logic [511:0], logic [63:0],
+  // AXI bus with 48 bit address, 512 bit data, 8 bit IDs, and 0 bit user data.
+  `AXI_TYPEDEF_ALL(axi_a48_d512_i8_u0, logic [47:0], logic [7:0], logic [511:0], logic [63:0],
                    logic [0:0])
 
   typedef axi_a48_d512_i4_u0_req_t soc_wide_xbar_in_req_t;
-  typedef axi_a48_d512_i9_u0_req_t soc_wide_xbar_out_req_t;
+  typedef axi_a48_d512_i8_u0_req_t soc_wide_xbar_out_req_t;
   typedef axi_a48_d512_i4_u0_resp_t soc_wide_xbar_in_resp_t;
-  typedef axi_a48_d512_i9_u0_resp_t soc_wide_xbar_out_resp_t;
+  typedef axi_a48_d512_i8_u0_resp_t soc_wide_xbar_out_resp_t;
   typedef axi_a48_d512_i4_u0_aw_chan_t soc_wide_xbar_in_aw_chan_t;
-  typedef axi_a48_d512_i9_u0_aw_chan_t soc_wide_xbar_out_aw_chan_t;
+  typedef axi_a48_d512_i8_u0_aw_chan_t soc_wide_xbar_out_aw_chan_t;
   typedef axi_a48_d512_i4_u0_w_chan_t soc_wide_xbar_in_w_chan_t;
-  typedef axi_a48_d512_i9_u0_w_chan_t soc_wide_xbar_out_w_chan_t;
+  typedef axi_a48_d512_i8_u0_w_chan_t soc_wide_xbar_out_w_chan_t;
   typedef axi_a48_d512_i4_u0_b_chan_t soc_wide_xbar_in_b_chan_t;
-  typedef axi_a48_d512_i9_u0_b_chan_t soc_wide_xbar_out_b_chan_t;
+  typedef axi_a48_d512_i8_u0_b_chan_t soc_wide_xbar_out_b_chan_t;
   typedef axi_a48_d512_i4_u0_ar_chan_t soc_wide_xbar_in_ar_chan_t;
-  typedef axi_a48_d512_i9_u0_ar_chan_t soc_wide_xbar_out_ar_chan_t;
+  typedef axi_a48_d512_i8_u0_ar_chan_t soc_wide_xbar_out_ar_chan_t;
   typedef axi_a48_d512_i4_u0_r_chan_t soc_wide_xbar_in_r_chan_t;
-  typedef axi_a48_d512_i9_u0_r_chan_t soc_wide_xbar_out_r_chan_t;
+  typedef axi_a48_d512_i8_u0_r_chan_t soc_wide_xbar_out_r_chan_t;
 
   // verilog_lint: waive parameter-name-style
   localparam int SOC_WIDE_XBAR_IW_IN = 4;
   // verilog_lint: waive parameter-name-style
-  localparam int SOC_WIDE_XBAR_IW_OUT = 9;
+  localparam int SOC_WIDE_XBAR_IW_OUT = 8;
 
   /// Inputs of the `soc_narrow_xbar` crossbar.
   typedef enum int {
@@ -310,8 +304,6 @@ package occamy_pkg;
     SOC_NARROW_XBAR_IN_S1_QUADRANT_3,
     SOC_NARROW_XBAR_IN_S1_QUADRANT_4,
     SOC_NARROW_XBAR_IN_S1_QUADRANT_5,
-    SOC_NARROW_XBAR_IN_S1_QUADRANT_6,
-    SOC_NARROW_XBAR_IN_S1_QUADRANT_7,
     SOC_NARROW_XBAR_IN_CVA6,
     SOC_NARROW_XBAR_IN_SOC_WIDE,
     SOC_NARROW_XBAR_IN_PERIPH,
@@ -326,8 +318,6 @@ package occamy_pkg;
     SOC_NARROW_XBAR_OUT_S1_QUADRANT_3,
     SOC_NARROW_XBAR_OUT_S1_QUADRANT_4,
     SOC_NARROW_XBAR_OUT_S1_QUADRANT_5,
-    SOC_NARROW_XBAR_OUT_S1_QUADRANT_6,
-    SOC_NARROW_XBAR_OUT_S1_QUADRANT_7,
     SOC_NARROW_XBAR_OUT_PERIPH,
     SOC_NARROW_XBAR_OUT_SPM,
     SOC_NARROW_XBAR_OUT_SOC_WIDE,
@@ -347,7 +337,7 @@ package occamy_pkg;
   AxiIdUsedSlvPorts:  4,
   AxiAddrWidth:       48,
   AxiDataWidth:       64,
-  NoAddrRules:        13
+  NoAddrRules:        11
 };
 
   // AXI bus with 48 bit address, 64 bit data, 4 bit IDs, and 0 bit user data.

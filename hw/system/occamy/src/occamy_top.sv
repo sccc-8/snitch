@@ -87,22 +87,22 @@ module occamy_top
     input logic [11:0] ext_irq_i,
 
     /// HBM2e Ports
-    output axi_a48_d512_i9_u0_req_t  hbm_0_req_o,
-    input  axi_a48_d512_i9_u0_resp_t hbm_0_rsp_i,
-    output axi_a48_d512_i9_u0_req_t  hbm_1_req_o,
-    input  axi_a48_d512_i9_u0_resp_t hbm_1_rsp_i,
-    output axi_a48_d512_i9_u0_req_t  hbm_2_req_o,
-    input  axi_a48_d512_i9_u0_resp_t hbm_2_rsp_i,
-    output axi_a48_d512_i9_u0_req_t  hbm_3_req_o,
-    input  axi_a48_d512_i9_u0_resp_t hbm_3_rsp_i,
-    output axi_a48_d512_i9_u0_req_t  hbm_4_req_o,
-    input  axi_a48_d512_i9_u0_resp_t hbm_4_rsp_i,
-    output axi_a48_d512_i9_u0_req_t  hbm_5_req_o,
-    input  axi_a48_d512_i9_u0_resp_t hbm_5_rsp_i,
-    output axi_a48_d512_i9_u0_req_t  hbm_6_req_o,
-    input  axi_a48_d512_i9_u0_resp_t hbm_6_rsp_i,
-    output axi_a48_d512_i9_u0_req_t  hbm_7_req_o,
-    input  axi_a48_d512_i9_u0_resp_t hbm_7_rsp_i,
+    output axi_a48_d512_i8_u0_req_t  hbm_0_req_o,
+    input  axi_a48_d512_i8_u0_resp_t hbm_0_rsp_i,
+    output axi_a48_d512_i8_u0_req_t  hbm_1_req_o,
+    input  axi_a48_d512_i8_u0_resp_t hbm_1_rsp_i,
+    output axi_a48_d512_i8_u0_req_t  hbm_2_req_o,
+    input  axi_a48_d512_i8_u0_resp_t hbm_2_rsp_i,
+    output axi_a48_d512_i8_u0_req_t  hbm_3_req_o,
+    input  axi_a48_d512_i8_u0_resp_t hbm_3_rsp_i,
+    output axi_a48_d512_i8_u0_req_t  hbm_4_req_o,
+    input  axi_a48_d512_i8_u0_resp_t hbm_4_rsp_i,
+    output axi_a48_d512_i8_u0_req_t  hbm_5_req_o,
+    input  axi_a48_d512_i8_u0_resp_t hbm_5_rsp_i,
+    output axi_a48_d512_i8_u0_req_t  hbm_6_req_o,
+    input  axi_a48_d512_i8_u0_resp_t hbm_6_rsp_i,
+    output axi_a48_d512_i8_u0_req_t  hbm_7_req_o,
+    input  axi_a48_d512_i8_u0_resp_t hbm_7_rsp_i,
 
     /// HBI Ports
     input  axi_a48_d512_i4_u0_req_t  hbi_0_req_i,
@@ -133,18 +133,10 @@ module occamy_top
     output axi_a48_d512_i4_u0_resp_t hbi_6_rsp_o,
     output axi_a48_d512_i7_u0_req_t  hbi_6_req_o,
     input  axi_a48_d512_i7_u0_resp_t hbi_6_rsp_i,
-    input  axi_a48_d512_i4_u0_req_t  hbi_7_req_i,
-    output axi_a48_d512_i4_u0_resp_t hbi_7_rsp_o,
-    output axi_a48_d512_i7_u0_req_t  hbi_7_req_o,
-    input  axi_a48_d512_i7_u0_resp_t hbi_7_rsp_i,
-    input  axi_a48_d512_i4_u0_req_t  hbi_8_req_i,
-    output axi_a48_d512_i4_u0_resp_t hbi_8_rsp_o,
-    output axi_a48_d512_i7_u0_req_t  hbi_8_req_o,
-    input  axi_a48_d512_i7_u0_resp_t hbi_8_rsp_i,
 
     /// PCIe Ports
-    output axi_a48_d512_i9_u0_req_t  pcie_axi_req_o,
-    input  axi_a48_d512_i9_u0_resp_t pcie_axi_rsp_i,
+    output axi_a48_d512_i8_u0_req_t  pcie_axi_req_o,
+    input  axi_a48_d512_i8_u0_resp_t pcie_axi_rsp_i,
 
     input  axi_a48_d512_i4_u0_req_t  pcie_axi_req_i,
     output axi_a48_d512_i4_u0_resp_t pcie_axi_rsp_o,
@@ -165,7 +157,7 @@ module occamy_top
   end
 
   // Machine timer and machine software interrupt pending.
-  logic [288:0] mtip, msip;
+  logic [216:0] mtip, msip;
   // Supervisor and machine-mode external interrupt pending.
   logic [1:0] eip;
   logic [0:0] debug_req;
@@ -309,14 +301,6 @@ SOC_REGBUS_PERIPH_XBAR_NUM_OUTPUTS
       .hbi_6_rsp_o,
       .hbi_6_req_o,
       .hbi_6_rsp_i,
-      .hbi_7_req_i,
-      .hbi_7_rsp_o,
-      .hbi_7_req_o,
-      .hbi_7_rsp_i,
-      .hbi_8_req_i,
-      .hbi_8_rsp_o,
-      .hbi_8_req_o,
-      .hbi_8_rsp_i,
       .pcie_axi_req_o,
       .pcie_axi_rsp_i,
       .pcie_axi_req_i,
@@ -644,7 +628,7 @@ SOC_REGBUS_PERIPH_XBAR_NUM_OUTPUTS
   logic [63:0] sba_addr_long;
 
   dm_top #(
-      // .NrHarts (289),
+      // .NrHarts (217),
       .NrHarts(1),
       .BusWidth(64),
       .DmBaseAddress('h0)
