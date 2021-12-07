@@ -242,7 +242,9 @@ def main():
 
     # HBI
     am_hbi = am.new_leaf("hbi", 0x10000000000,
-                         0x10000000000).attach_to(am_wide_xbar_quadrant_s1)
+                         0x100000000000).attach_to(am_wide_xbar_quadrant_s1)
+    am_hbi_sr = am.new_leaf("hbi_sr", 0x10000000000,
+                            0x110000000000).attach_to(am_soc_narrow_xbar)
     am_soc_wide_xbar.attach(am_hbi)
 
     # Generate crossbars.
@@ -358,11 +360,13 @@ def main():
     soc_narrow_xbar.add_input("cva6")
     soc_narrow_xbar.add_input("soc_wide")
     soc_narrow_xbar.add_input("periph")
+    soc_narrow_xbar.add_input("hbi_sr")
     dts.add_cpu("eth,ariane")
 
     soc_narrow_xbar.add_output_entry("periph", am_soc_axi_lite_periph_xbar)
     soc_narrow_xbar.add_output_entry("spm", am_spm)
     soc_narrow_xbar.add_output_entry("soc_wide", am_soc_wide_xbar)
+    soc_narrow_xbar.add_output_entry("hbi_sr", am_hbi_sr)
     soc_narrow_xbar.add_output_entry("regbus_periph",
                                      am_soc_regbus_periph_xbar)
 
@@ -436,6 +440,15 @@ def main():
                                 dw=soc_regbus_periph_xbar.dw,
                                 name="apb_hbm_cfg")
 
+    ###################
+    # HBI SR AXI Lite #
+    ###################
+    axi_lite_hbi_sr = solder.AxiLiteBus(clk=soc_narrow_xbar.clk,
+                                        rst=soc_narrow_xbar.rst,
+                                        aw=soc_narrow_xbar.aw,
+                                        dw=soc_narrow_xbar.dw,
+                                        name="axi_lite_hbi_sr")
+
     kwargs = {
         "solder": solder,
         "util": util,
@@ -446,6 +459,7 @@ def main():
         "soc_regbus_periph_xbar": soc_regbus_periph_xbar,
         "apb_hbi_ctl": apb_hbi_ctl,
         "apb_hbm_cfg": apb_hbm_cfg,
+        "axi_lite_hbi_sr": axi_lite_hbi_sr,
         "cfg": occamy.cfg,
         "cores": nr_s1_quadrants * nr_s1_clusters * nr_cluster_cores + 1,
         "nr_s1_quadrants": nr_s1_quadrants,

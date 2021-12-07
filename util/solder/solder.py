@@ -877,6 +877,14 @@ class AxiLiteBus(object):
         self.name_suffix = name_suffix
         self.declared = declared
 
+    def copy(self, name=None):
+        return AxiLiteBus(self.clk,
+            self.rst,
+            self.aw,
+            self.dw,
+            name or self.name,
+            declared=False)
+
     def emit_struct(self):
         return AxiLiteStruct.emit(self.aw, self.dw)
 
@@ -899,6 +907,39 @@ class AxiLiteBus(object):
 
     def rsp_type(self):
         return "{}_rsp_t".format(self.type_prefix)
+
+    def cut(self, context, nr_cuts=1, name=None, inst_name=None, to=None):
+        if nr_cuts == 0:
+            return self
+
+        name = name or "{}_cut".format(self.name)
+
+        # Generate the new bus.
+        if to is None:
+            bus = copy(self)
+            bus.declared = False
+            bus.type_prefix = bus.emit_struct()
+            bus.name = name
+            bus.name_suffix = None
+        else:
+            bus = to
+
+        assert (bus.clk == self.clk)
+        assert (bus.rst == self.rst)
+        assert (bus.aw == self.aw)
+        assert (bus.dw == self.dw)
+
+        # Emit the cut instance.
+        bus.declare(context)
+        tpl = templates.get_template("solder.axi_multicut.sv.tpl")
+        context.write(
+            tpl.render_unicode(
+                bus_in=self,
+                bus_out=bus,
+                nr_cuts=nr_cuts,
+                name=inst_name or "i_{}".format(name),
+            ) + "\n")
+        return bus
 
     def cdc(self,
             context,
@@ -944,7 +985,7 @@ class AxiLiteBus(object):
     def to_axi(self, context, name, iw=0, uw=0, inst_name=None, to=None):
         # Generate the new bus.
         if to is None:
-            bus = AxiBus(self.aw, self.dw, iw, uw)
+            bus = AxiBus(self.clk, self.rst, self.aw, self.dw, iw, uw, name)
             bus.name = name
             bus.name_suffix = None
         else:

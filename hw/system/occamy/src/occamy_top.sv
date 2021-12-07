@@ -142,6 +142,12 @@ module occamy_top
     output axi_a48_d512_i7_u0_req_t  hbi_8_req_o,
     input  axi_a48_d512_i7_u0_resp_t hbi_8_rsp_i,
 
+    /// HBI Sideband Ports
+    input  axi_lite_a48_d64_req_t hbi_sr_req_i,
+    output axi_lite_a48_d64_rsp_t hbi_sr_rsp_o,
+    output axi_lite_a48_d64_req_t hbi_sr_req_o,
+    input  axi_lite_a48_d64_rsp_t hbi_sr_rsp_i,
+
     /// PCIe Ports
     output axi_a48_d512_i9_u0_req_t  pcie_axi_req_o,
     input  axi_a48_d512_i9_u0_resp_t pcie_axi_rsp_i,
@@ -317,6 +323,10 @@ SOC_REGBUS_PERIPH_XBAR_NUM_OUTPUTS
       .hbi_8_rsp_o,
       .hbi_8_req_o,
       .hbi_8_rsp_i,
+      .hbi_sr_req_i,
+      .hbi_sr_rsp_o,
+      .hbi_sr_req_o,
+      .hbi_sr_rsp_i,
       .pcie_axi_req_o,
       .pcie_axi_rsp_i,
       .pcie_axi_req_i,

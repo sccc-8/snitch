@@ -72,6 +72,11 @@ module occamy_soc
     output axi_a48_d512_i7_u0_req_t  hbi_8_req_o,
     input  axi_a48_d512_i7_u0_resp_t hbi_8_rsp_i,
 
+    input  axi_lite_a48_d64_req_t hbi_sr_req_i,
+    output axi_lite_a48_d64_rsp_t hbi_sr_rsp_o,
+    output axi_lite_a48_d64_req_t hbi_sr_req_o,
+    input  axi_lite_a48_d64_rsp_t hbi_sr_rsp_i,
+
     /// PCIe Ports
     output axi_a48_d512_i9_u0_req_t  pcie_axi_req_o,
     input  axi_a48_d512_i9_u0_resp_t pcie_axi_rsp_i,
@@ -131,7 +136,7 @@ module occamy_soc
   ///////////////////
 
   /// Address map of the `soc_wide_xbar` crossbar.
-  xbar_rule_48_t [21:0] SocWideXbarAddrmap;
+  xbar_rule_48_t [22:0] SocWideXbarAddrmap;
   assign SocWideXbarAddrmap = '{
   '{ idx: 8, start_addr: 48'h80000000, end_addr: 48'hc0000000 },
   '{ idx: 8, start_addr: 48'h1000000000, end_addr: 48'h1040000000 },
@@ -143,9 +148,10 @@ module occamy_soc
   '{ idx: 13, start_addr: 48'h1140000000, end_addr: 48'h1180000000 },
   '{ idx: 14, start_addr: 48'h1180000000, end_addr: 48'h11c0000000 },
   '{ idx: 15, start_addr: 48'h11c0000000, end_addr: 48'h1200000000 },
-  '{ idx: 16, start_addr: 48'h10000000000, end_addr: 48'h20000000000 },
+  '{ idx: 16, start_addr: 48'h100000000000, end_addr: 48'h110000000000 },
   '{ idx: 17, start_addr: 48'h00000000, end_addr: 48'h10000000 },
   '{ idx: 17, start_addr: 48'h70000000, end_addr: 48'h70020000 },
+  '{ idx: 17, start_addr: 48'h110000000000, end_addr: 48'h120000000000 },
   '{ idx: 18, start_addr: 48'h20000000, end_addr: 48'h70000000 },
   '{ idx: 0, start_addr: s1_quadrant_base_addr[0], end_addr: s1_quadrant_base_addr[0] + S1QuadrantAddressSpace },
   '{ idx: 1, start_addr: s1_quadrant_base_addr[1], end_addr: s1_quadrant_base_addr[1] + S1QuadrantAddressSpace },
@@ -194,13 +200,14 @@ module occamy_soc
   );
 
   /// Address map of the `soc_narrow_xbar` crossbar.
-  xbar_rule_48_t [12:0] SocNarrowXbarAddrmap;
+  xbar_rule_48_t [13:0] SocNarrowXbarAddrmap;
   assign SocNarrowXbarAddrmap = '{
   '{ idx: 8, start_addr: 48'h00000000, end_addr: 48'h00001000 },
   '{ idx: 9, start_addr: 48'h70000000, end_addr: 48'h70020000 },
   '{ idx: 10, start_addr: 48'h20000000, end_addr: 48'h70000000 },
-  '{ idx: 10, start_addr: 48'h80000000, end_addr: 48'h20000000000 },
-  '{ idx: 11, start_addr: 48'h01000000, end_addr: 48'h10000000 },
+  '{ idx: 10, start_addr: 48'h80000000, end_addr: 48'h110000000000 },
+  '{ idx: 11, start_addr: 48'h110000000000, end_addr: 48'h120000000000 },
+  '{ idx: 12, start_addr: 48'h01000000, end_addr: 48'h10000000 },
   '{ idx: 0, start_addr: s1_quadrant_base_addr[0], end_addr: s1_quadrant_base_addr[0] + S1QuadrantAddressSpace },
   '{ idx: 1, start_addr: s1_quadrant_base_addr[1], end_addr: s1_quadrant_base_addr[1] + S1QuadrantAddressSpace },
   '{ idx: 2, start_addr: s1_quadrant_base_addr[2], end_addr: s1_quadrant_base_addr[2] + S1QuadrantAddressSpace },
@@ -211,14 +218,14 @@ module occamy_soc
   '{ idx: 7, start_addr: s1_quadrant_base_addr[7], end_addr: s1_quadrant_base_addr[7] + S1QuadrantAddressSpace }
 };
 
-  soc_narrow_xbar_in_req_t   [10:0] soc_narrow_xbar_in_req;
-  soc_narrow_xbar_in_resp_t  [10:0] soc_narrow_xbar_in_rsp;
-  soc_narrow_xbar_out_req_t  [11:0] soc_narrow_xbar_out_req;
-  soc_narrow_xbar_out_resp_t [11:0] soc_narrow_xbar_out_rsp;
+  soc_narrow_xbar_in_req_t   [11:0] soc_narrow_xbar_in_req;
+  soc_narrow_xbar_in_resp_t  [11:0] soc_narrow_xbar_in_rsp;
+  soc_narrow_xbar_out_req_t  [12:0] soc_narrow_xbar_out_req;
+  soc_narrow_xbar_out_resp_t [12:0] soc_narrow_xbar_out_rsp;
 
   axi_xbar #(
       .Cfg(SocNarrowXbarCfg),
-      .Connectivity  ( 132'b111011111111101111111111111111111111111101111111111110111111111111011111111111101111111111110111111111111011111111111101111111111110 ),
+      .Connectivity  ( 156'b101111111111111110111111111101111111111111111111111111111011111111111110111111111111101111111111111011111111111110111111111111101111111111111011111111111110 ),
       .AtopSupport(1),
       .slv_aw_chan_t(axi_a48_d64_i4_u0_aw_chan_t),
       .mst_aw_chan_t(axi_a48_d64_i8_u0_aw_chan_t),
@@ -2743,6 +2750,113 @@ module occamy_soc
 
   assign hbi_8_req_o = soc_wide_hbi_iwc_cut_req;
   assign soc_wide_hbi_iwc_cut_rsp = hbi_8_rsp_i;
+
+  // HBI Sideband connections
+  axi_lite_a48_d64_req_t axi_lite_hbi_sr_in_req;
+  axi_lite_a48_d64_rsp_t axi_lite_hbi_sr_in_rsp;
+
+  axi_lite_a48_d64_req_t axi_lite_hbi_sr_out_req;
+  axi_lite_a48_d64_rsp_t axi_lite_hbi_sr_out_rsp;
+
+  axi_lite_a48_d64_req_t axi_to_axi_lite_hbi_sr_req;
+  axi_lite_a48_d64_rsp_t axi_to_axi_lite_hbi_sr_rsp;
+
+  axi_to_axi_lite #(
+      .AxiAddrWidth(48),
+      .AxiDataWidth(64),
+      .AxiIdWidth(8),
+      .AxiUserWidth(1),
+      .AxiMaxWriteTxns(4),
+      .AxiMaxReadTxns(4),
+      .FallThrough(0),
+      .full_req_t(axi_a48_d64_i8_u0_req_t),
+      .full_resp_t(axi_a48_d64_i8_u0_resp_t),
+      .lite_req_t(axi_lite_a48_d64_req_t),
+      .lite_resp_t(axi_lite_a48_d64_rsp_t)
+  ) i_axi_to_axi_lite_hbi_sr_pc (
+      .clk_i(clk_i),
+      .rst_ni(rst_ni),
+      .test_i(test_mode_i),
+      .slv_req_i(soc_narrow_xbar_out_req[SOC_NARROW_XBAR_OUT_HBI_SR]),
+      .slv_resp_o(soc_narrow_xbar_out_rsp[SOC_NARROW_XBAR_OUT_HBI_SR]),
+      .mst_req_o(axi_to_axi_lite_hbi_sr_req),
+      .mst_resp_i(axi_to_axi_lite_hbi_sr_rsp)
+  );
+
+  axi_multicut #(
+      .NoCuts(6),
+      .aw_chan_t(axi_lite_a48_d64_aw_chan_t),
+      .w_chan_t(axi_lite_a48_d64_w_chan_t),
+      .b_chan_t(axi_lite_a48_d64_b_chan_t),
+      .ar_chan_t(axi_lite_a48_d64_ar_chan_t),
+      .r_chan_t(axi_lite_a48_d64_r_chan_t),
+      .req_t(axi_lite_a48_d64_req_t),
+      .resp_t(axi_lite_a48_d64_rsp_t)
+  ) i_axi_to_axi_lite_hbi_sr_cut (
+      .clk_i(clk_i),
+      .rst_ni(rst_ni),
+      .slv_req_i(axi_to_axi_lite_hbi_sr_req),
+      .slv_resp_o(axi_to_axi_lite_hbi_sr_rsp),
+      .mst_req_o(axi_lite_hbi_sr_out_req),
+      .mst_resp_i(axi_lite_hbi_sr_out_rsp)
+  );
+  axi_lite_a48_d64_req_t axi_lite_hbi_sr_in_cut_req;
+  axi_lite_a48_d64_rsp_t axi_lite_hbi_sr_in_cut_rsp;
+
+  axi_multicut #(
+      .NoCuts(6),
+      .aw_chan_t(axi_lite_a48_d64_aw_chan_t),
+      .w_chan_t(axi_lite_a48_d64_w_chan_t),
+      .b_chan_t(axi_lite_a48_d64_b_chan_t),
+      .ar_chan_t(axi_lite_a48_d64_ar_chan_t),
+      .r_chan_t(axi_lite_a48_d64_r_chan_t),
+      .req_t(axi_lite_a48_d64_req_t),
+      .resp_t(axi_lite_a48_d64_rsp_t)
+  ) i_axi_lite_hbi_sr_in_cut (
+      .clk_i(clk_i),
+      .rst_ni(rst_ni),
+      .slv_req_i(axi_lite_hbi_sr_in_req),
+      .slv_resp_o(axi_lite_hbi_sr_in_rsp),
+      .mst_req_o(axi_lite_hbi_sr_in_cut_req),
+      .mst_resp_i(axi_lite_hbi_sr_in_cut_rsp)
+  );
+  axi_a48_d64_i4_u0_req_t  axi_lite_to_axi_hbi_sr_req;
+  axi_a48_d64_i4_u0_resp_t axi_lite_to_axi_hbi_sr_rsp;
+
+  axi_lite_to_axi #(
+      .AxiDataWidth(64),
+      .req_lite_t  (axi_lite_a48_d64_req_t),
+      .resp_lite_t (axi_lite_a48_d64_rsp_t),
+      .req_t       (axi_a48_d64_i4_u0_req_t),
+      .resp_t      (axi_a48_d64_i4_u0_resp_t)
+  ) i_axi_lite_to_axi_hbi_sr_pc (
+      .slv_req_lite_i (axi_lite_hbi_sr_in_cut_req),
+      .slv_resp_lite_o(axi_lite_hbi_sr_in_cut_rsp),
+      .slv_aw_cache_i (axi_pkg::CACHE_MODIFIABLE),
+      .slv_ar_cache_i (axi_pkg::CACHE_MODIFIABLE),
+      .mst_req_o      (axi_lite_to_axi_hbi_sr_req),
+      .mst_resp_i     (axi_lite_to_axi_hbi_sr_rsp)
+  );
+
+  axi_modify_address #(
+      .slv_req_t (axi_a48_d64_i4_u0_req_t),
+      .mst_addr_t(logic [47:0]),
+      .mst_req_t (axi_a48_d64_i4_u0_req_t),
+      .axi_resp_t(axi_a48_d64_i4_u0_resp_t)
+  ) i_None (
+      .slv_req_i(axi_lite_to_axi_hbi_sr_req),
+      .slv_resp_o(axi_lite_to_axi_hbi_sr_rsp),
+      .mst_aw_addr_i({8'b0, axi_lite_to_axi_hbi_sr_req.aw.addr[39:0]}),
+      .mst_ar_addr_i({8'b0, axi_lite_to_axi_hbi_sr_req.ar.addr[39:0]}),
+      .mst_req_o(soc_narrow_xbar_in_req[SOC_NARROW_XBAR_IN_HBI_SR]),
+      .mst_resp_i(soc_narrow_xbar_in_rsp[SOC_NARROW_XBAR_IN_HBI_SR])
+  );
+
+
+  assign axi_lite_hbi_sr_in_req = hbi_sr_req_i;
+  assign hbi_sr_rsp_o = axi_lite_hbi_sr_in_rsp;
+  assign hbi_sr_req_o = axi_lite_hbi_sr_out_req;
+  assign axi_lite_hbi_sr_out_rsp = hbi_sr_rsp_i;
 
   /////////////////
   // Peripherals //

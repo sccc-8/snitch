@@ -30,6 +30,11 @@ module occamy_soc
   input   ${wide_xbar_quadrant_s1.out_hbi.rsp_type()} hbi_${i}_rsp_i,
 % endfor
 
+  input  ${axi_lite_hbi_sr.req_type()} hbi_sr_req_i,
+  output ${axi_lite_hbi_sr.rsp_type()} hbi_sr_rsp_o,
+  output ${axi_lite_hbi_sr.req_type()} hbi_sr_req_o,
+  input  ${axi_lite_hbi_sr.rsp_type()} hbi_sr_rsp_i,
+
   /// PCIe Ports
   output  ${soc_wide_xbar.out_pcie.req_type()} pcie_axi_req_o,
   input   ${soc_wide_xbar.out_pcie.rsp_type()} pcie_axi_rsp_i,
@@ -301,6 +306,24 @@ module occamy_soc
   %>
   assign hbi_${nr_s1_quadrants}_req_o = ${soc_wide_hbi_iwc.req_name()};
   assign ${soc_wide_hbi_iwc.rsp_name()} = hbi_${nr_s1_quadrants}_rsp_i;
+
+  // HBI Sideband connections
+  <%
+    hbi_sr_cuts = 6
+    hbi_sr_in = axi_lite_hbi_sr.copy(name="axi_lite_hbi_sr_in").declare(context)
+    hbi_sr_out = axi_lite_hbi_sr.copy(name="axi_lite_hbi_sr_out").declare(context)
+    soc_narrow_xbar.out_hbi_sr \
+      .to_axi_lite(context, "axi_to_axi_lite_hbi_sr") \
+      .cut(context, hbi_sr_cuts, to=hbi_sr_out)
+    hbi_sr_in \
+      .cut(context, hbi_sr_cuts) \
+      .to_axi(context, "axi_lite_to_axi_hbi_sr", iw=soc_narrow_xbar.iw, uw=soc_narrow_xbar.uw) \
+      .trunc_addr(context, target_aw=40, to=soc_narrow_xbar.in_hbi_sr) \
+  %>
+  assign ${hbi_sr_in.req_name()} = hbi_sr_req_i;
+  assign hbi_sr_rsp_o = ${hbi_sr_in.rsp_name()};
+  assign hbi_sr_req_o = ${hbi_sr_out.req_name()};
+  assign ${hbi_sr_out.rsp_name()} = hbi_sr_rsp_i;
 
   /////////////////
   // Peripherals //

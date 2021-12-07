@@ -125,6 +125,10 @@ module testharness import occamy_pkg::*; (
     .hbi_${i}_req_o (),
     .hbi_${i}_rsp_i ('0),
 % endfor
+    .hbi_sr_req_i   ('0),
+    .hbi_sr_rsp_o   (),
+    .hbi_sr_req_o   (),
+    .hbi_sr_rsp_i   ('0),
     .pcie_axi_req_o (pcie_axi_req),
     .pcie_axi_rsp_i (pcie_axi_rsp),
     .pcie_axi_req_i ('0),

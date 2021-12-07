@@ -100,6 +100,12 @@ module occamy_top
   input   ${wide_xbar_quadrant_s1.out_hbi.rsp_type()} hbi_${i}_rsp_i,
 % endfor
 
+  /// HBI Sideband Ports
+  input  ${axi_lite_hbi_sr.req_type()} hbi_sr_req_i,
+  output ${axi_lite_hbi_sr.rsp_type()} hbi_sr_rsp_o,
+  output ${axi_lite_hbi_sr.req_type()} hbi_sr_req_o,
+  input  ${axi_lite_hbi_sr.rsp_type()} hbi_sr_rsp_i,
+
   /// PCIe Ports
   output  ${soc_wide_xbar.out_pcie.req_type()} pcie_axi_req_o,
   input   ${soc_wide_xbar.out_pcie.rsp_type()} pcie_axi_rsp_i,
@@ -161,6 +167,10 @@ module occamy_top
     .hbi_${i}_req_o,
     .hbi_${i}_rsp_i,
 % endfor
+    .hbi_sr_req_i,
+    .hbi_sr_rsp_o,
+    .hbi_sr_req_o,
+    .hbi_sr_rsp_i,
     .pcie_axi_req_o,
     .pcie_axi_rsp_i,
     .pcie_axi_req_i,
