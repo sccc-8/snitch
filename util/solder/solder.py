@@ -879,11 +879,11 @@ class AxiLiteBus(object):
 
     def copy(self, name=None):
         return AxiLiteBus(self.clk,
-            self.rst,
-            self.aw,
-            self.dw,
-            name or self.name,
-            declared=False)
+                          self.rst,
+                          self.aw,
+                          self.dw,
+                          name or self.name,
+                          declared=False)
 
     def emit_struct(self):
         return AxiLiteStruct.emit(self.aw, self.dw)
