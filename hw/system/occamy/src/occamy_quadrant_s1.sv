@@ -57,7 +57,7 @@ module occamy_quadrant_s1
   /// Address map of the `wide_xbar_quadrant_s1` crossbar.
   xbar_rule_48_t [4:0] WideXbarQuadrantS1Addrmap;
   assign WideXbarQuadrantS1Addrmap = '{
-  '{ idx: 1, start_addr: 48'h100000000000, end_addr: 48'h110000000000 },
+  '{ idx: 1, start_addr: 48'h20000000000, end_addr: 48'h30000000000 },
   '{ idx: 2, start_addr: cluster_base_addr[0], end_addr: cluster_base_addr[0] + ClusterAddressSpace },
   '{ idx: 3, start_addr: cluster_base_addr[1], end_addr: cluster_base_addr[1] + ClusterAddressSpace },
   '{ idx: 4, start_addr: cluster_base_addr[2], end_addr: cluster_base_addr[2] + ClusterAddressSpace },

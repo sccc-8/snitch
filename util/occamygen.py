@@ -242,9 +242,9 @@ def main():
 
     # HBI
     am_hbi = am.new_leaf("hbi", 0x10000000000,
-                         0x100000000000).attach_to(am_wide_xbar_quadrant_s1)
+                         0x20000000000).attach_to(am_wide_xbar_quadrant_s1)
     am_hbi_sr = am.new_leaf("hbi_sr", 0x10000000000,
-                            0x110000000000).attach_to(am_soc_narrow_xbar)
+                            0x30000000000).attach_to(am_soc_narrow_xbar)
     am_soc_wide_xbar.attach(am_hbi)
 
     # Generate crossbars.

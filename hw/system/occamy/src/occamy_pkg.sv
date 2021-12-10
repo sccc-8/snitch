@@ -139,7 +139,7 @@ package occamy_pkg;
   /// Address map of the `soc_axi_lite_periph_xbar` crossbar.
   localparam xbar_rule_48_t [1:0] SocAxiLitePeriphXbarAddrmap = '{
   '{ idx: 0, start_addr: 48'h00000000, end_addr: 48'h00001000 },
-  '{ idx: 1, start_addr: 48'h01000000, end_addr: 48'h120000000000 }
+  '{ idx: 1, start_addr: 48'h01000000, end_addr: 48'h40000000000 }
 };
 
   // AXI plugs of the `soc_axi_lite_periph_xbar` crossbar.
