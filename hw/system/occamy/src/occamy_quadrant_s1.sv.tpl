@@ -147,12 +147,10 @@ module occamy_quadrant_s1
   // Cluster ${i} //
   ///////////////
   <%
-    narrow_cluster_in = narrow_xbar_quadrant_s1.__dict__["out_cluster_{}".format(i)].change_iw(context, 2, "narrow_in_iwc_{}".format(i)).cut(context, cut_width)
-    narrow_cluster_out = narrow_xbar_quadrant_s1.__dict__["in_cluster_{}".format(i)].copy(name="narrow_out_{}".format(i)).declare(context)
-    narrow_cluster_out.cut(context, cut_width, to=narrow_xbar_quadrant_s1.__dict__["in_cluster_{}".format(i)])
-    wide_cluster_in = wide_xbar_quadrant_s1.__dict__["out_cluster_{}".format(i)].change_iw(context, 2, "wide_in_iwc_{}".format(i)).cut(context, cut_width)
-    wide_cluster_out = wide_xbar_quadrant_s1.__dict__["in_cluster_{}".format(i)].copy(name="wide_out_{}".format(i)).declare(context)
-    wide_cluster_out.cut(context, cut_width, to=wide_xbar_quadrant_s1.__dict__["in_cluster_{}".format(i)])
+    narrow_cluster_in = narrow_xbar_quadrant_s1.__dict__["out_cluster_{}".format(i)].change_iw(context, 2, "narrow_in_iwc_{}".format(i))
+    narrow_cluster_out = narrow_xbar_quadrant_s1.__dict__["in_cluster_{}".format(i)]
+    wide_cluster_in = wide_xbar_quadrant_s1.__dict__["out_cluster_{}".format(i)].change_iw(context, 2, "wide_in_iwc_{}".format(i))
+    wide_cluster_out =wide_xbar_quadrant_s1.__dict__["in_cluster_{}".format(i)]
   %>
 
   logic [9:0] hart_base_id_${i};
