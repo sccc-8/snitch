@@ -33,8 +33,8 @@ module occamy_quadrant_s1
   input  logic [${ro_cache_regions-1}:0][${soc_wide_xbar.in_s1_quadrant_0.aw-1}:0] ro_start_addr_i,
   input  logic [${ro_cache_regions-1}:0][${soc_wide_xbar.in_s1_quadrant_0.aw-1}:0] ro_end_addr_i,
   // HBI Connection
-  output ${wide_xbar_quadrant_s1.out_hbi.req_type()}   quadrant_hbi_out_req_o,
-  input  ${wide_xbar_quadrant_s1.out_hbi.rsp_type()}   quadrant_hbi_out_rsp_i,
+  output ${axi_hbi_out.req_type()}   quadrant_hbi_out_req_o,
+  input  ${axi_hbi_out.rsp_type()}   quadrant_hbi_out_rsp_i,
   // Next-Level
   output ${soc_narrow_xbar.in_s1_quadrant_0.req_type()} quadrant_narrow_out_req_o,
   input  ${soc_narrow_xbar.in_s1_quadrant_0.rsp_type()} quadrant_narrow_out_rsp_i,
@@ -122,6 +122,7 @@ module occamy_quadrant_s1
   <%
     wide_cluster_hbi_out_iwc = wide_xbar_quadrant_s1.out_hbi  \
       .isolate(context, "isolate_i[4]", "quadrant_hbi_out_isolate", isolated="isolated_o[4]", atop_support=False) \
+      .change_iw(context, axi_hbi_out.iw, "quadrant_hbi_out_iwc") \
       .cut(context, cut_width)
   %>
 

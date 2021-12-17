@@ -26,8 +26,8 @@ module occamy_soc
 % for i in range(nr_s1_quadrants+1):
   input   ${soc_wide_xbar.__dict__["in_hbi_{}".format(i)].req_type()} hbi_${i}_req_i,
   output  ${soc_wide_xbar.__dict__["in_hbi_{}".format(i)].rsp_type()} hbi_${i}_rsp_o,
-  output  ${wide_xbar_quadrant_s1.out_hbi.req_type()} hbi_${i}_req_o,
-  input   ${wide_xbar_quadrant_s1.out_hbi.rsp_type()} hbi_${i}_rsp_i,
+  output  ${axi_hbi_out.req_type()} hbi_${i}_req_o,
+  input   ${axi_hbi_out.rsp_type()} hbi_${i}_rsp_i,
 % endfor
 
   input  ${axi_lite_hbi_sr.req_type()} hbi_sr_req_i,
@@ -156,7 +156,7 @@ module occamy_soc
     wide_in = soc_wide_xbar.__dict__["out_s1_quadrant_{}".format(i)].cut(context, quad_widex_cuts, name="wide_in_cut_{}".format(i))
     wide_out = soc_wide_xbar.__dict__["in_s1_quadrant_{}".format(i)].copy(name="wide_out_cut_{}".format(i)).declare(context)
     wide_out.cut(context, quad_widex_cuts, to=soc_wide_xbar.__dict__["in_s1_quadrant_{}".format(i)])
-    wide_hbi_out = wide_xbar_quadrant_s1.out_hbi.copy(name="wide_hbi_out_cut_{}".format(i)).declare(context)
+    wide_hbi_out = axi_hbi_out.copy(name="wide_hbi_out_cut_{}".format(i)).declare(context)
     wide_hbi_cut_out = wide_hbi_out.cut(context, quad_hbi_cuts)
   %>
   assign hbi_${i}_req_o = ${wide_hbi_cut_out.req_name()};
@@ -301,7 +301,7 @@ module occamy_soc
   <%
     hbi_widex_cuts = 6
     soc_wide_hbi_iwc = soc_wide_xbar.__dict__["out_hbi_{}".format(nr_s1_quadrants)] \
-        .change_iw(context, wide_xbar_quadrant_s1.out_hbi.iw, "soc_wide_hbi_iwc") \
+        .change_iw(context, axi_hbi_out.iw, "soc_wide_hbi_iwc") \
         .cut(context, hbi_widex_cuts)
   %>
   assign hbi_${nr_s1_quadrants}_req_o = ${soc_wide_hbi_iwc.req_name()};

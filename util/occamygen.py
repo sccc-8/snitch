@@ -440,9 +440,18 @@ def main():
                                 dw=soc_regbus_periph_xbar.dw,
                                 name="apb_hbm_cfg")
 
-    ###################
-    # HBI SR AXI Lite #
-    ###################
+    ############
+    # HBI AXI  #
+    ############
+    # Generate dummy buses to generate type
+    axi_hbi_out = solder.AxiBus(clk=soc_wide_xbar.clk,
+                                rst=soc_wide_xbar.rst,
+                                aw=soc_wide_xbar.aw,
+                                dw=soc_wide_xbar.dw,
+                                iw=3,
+                                uw=soc_wide_xbar.uw,
+                                name="axi_hbi_out")
+
     axi_lite_hbi_sr = solder.AxiLiteBus(clk=soc_narrow_xbar.clk,
                                         rst=soc_narrow_xbar.rst,
                                         aw=soc_narrow_xbar.aw,
@@ -459,6 +468,7 @@ def main():
         "soc_regbus_periph_xbar": soc_regbus_periph_xbar,
         "apb_hbi_ctl": apb_hbi_ctl,
         "apb_hbm_cfg": apb_hbm_cfg,
+        "axi_hbi_out": axi_hbi_out,
         "axi_lite_hbi_sr": axi_lite_hbi_sr,
         "cfg": occamy.cfg,
         "cores": nr_s1_quadrants * nr_s1_clusters * nr_cluster_cores + 1,

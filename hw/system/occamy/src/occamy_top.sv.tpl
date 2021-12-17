@@ -96,8 +96,8 @@ module occamy_top
 % for i in range(nr_s1_quadrants+1):
   input   ${soc_wide_xbar.__dict__["in_hbi_{}".format(i)].req_type()} hbi_${i}_req_i,
   output  ${soc_wide_xbar.__dict__["in_hbi_{}".format(i)].rsp_type()} hbi_${i}_rsp_o,
-  output  ${wide_xbar_quadrant_s1.out_hbi.req_type()} hbi_${i}_req_o,
-  input   ${wide_xbar_quadrant_s1.out_hbi.rsp_type()} hbi_${i}_rsp_i,
+  output  ${axi_hbi_out.req_type()} hbi_${i}_req_o,
+  input   ${axi_hbi_out.rsp_type()} hbi_${i}_rsp_i,
 % endfor
 
   /// HBI Sideband Ports
