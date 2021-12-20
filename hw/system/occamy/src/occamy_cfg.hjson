@@ -14,9 +14,9 @@
       max_mst_trans: 4,
       fall_through: false,
     },
-    nr_s1_quadrant: 8,
+    nr_s1_quadrant: 1,
     s1_quadrant: {
-      nr_clusters: 4,
+      nr_clusters: 2,
       // Disable for easier flow trials.
       ro_cache_cfg: {
           width: 1024,
@@ -248,7 +248,7 @@
         nr_channels_address_0: 2,
     },
     // dram corresponds to 'hbm address_0' and 'nr_channels_address_0'
-    dram: { 
+    dram: {
         address: 2147483648, // 0x8000_0000
         length: 2147483648, // 2 GiB 0x8000_0000
     },

@@ -214,7 +214,7 @@ def main(file: str, outdir: pathlib.Path, tex_filename: str, md_filename: str):
 
     # Quadrant latex
     NR_CLUSTER_ADDR_RANGES = 2  # tcdm and periphs
-    NR_CLUSTERS_PER_QUADRANT = 4  # hardcoded for now
+    NR_CLUSTERS_PER_QUADRANT = 2  # hardcoded for now
     NR_QUADRANTS = int(nr_q_entries / NR_CLUSTERS_PER_QUADRANT / NR_CLUSTER_ADDR_RANGES)
 
     QUADRANT_SIZE = int(quadrant_range_size / NR_QUADRANTS)
