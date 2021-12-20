@@ -1,0 +1,10 @@
+# Use shitty modelsim GCC
+export GCC_DIR="/usr/pack/modelsim-10.7b-kgf/questasim/gcc-5.3.0-linux_x86_64"
+export GCC_DIR2="$GCC_DIR"
+export CC="$GCC_DIR2/bin/gcc"
+export CXX="$GCC_DIR2/bin/g++"
+export C_INCLUDE_PATH="$GCC_DIR/include"
+export CPLUS_INCLUDE_PATH="$GCC_DIR/include"
+export LD_LIBRARY_PATH="$GCC_DIR2/lib64:$LD_LIBRARY_PATH"
+export LIBRARY_PATH="$GCC_DIR2/lib64"
+export PATH="$GCC_DIR/linux-x64/bin:$PATH"
