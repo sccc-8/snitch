@@ -14,7 +14,7 @@ int main() {
         uint32_t fa8n = 0xC048F5C3; // 0xC248 -3.14
         uint32_t fb8  = 0x3FCF1AA0; // 0x3E79  1.618
         uint32_t fb8n = 0xBFCF1AA0; // 0xBE79 -1.618
-        
+
         int cmp0 = 0;
         int cmp1 = 0;
         int cmp2 = 0;
@@ -27,10 +27,18 @@ int main() {
             "vfcpkb.b.s ft5, ft4, ft3\n"
             "vfcpkc.b.s ft5, ft4, ft3\n"
             "vfcpkd.b.s ft5, ft4, ft3\n"
-            "vfcpka.b.s ft6, ft3, ft4\n" 
-            "vfcpkb.b.s ft6, ft3, ft4\n" 
-            "vfcpkc.b.s ft6, ft3, ft4\n" 
-            "vfcpkd.b.s ft6, ft3, ft4\n" 
+            "vfcpka.b.s ft6, ft3, ft4\n"
+            "vfcpkb.b.s ft6, ft3, ft4\n"
+            "vfcpkc.b.s ft6, ft3, ft4\n"
+            "vfcpkd.b.s ft6, ft3, ft4\n"
+            "vfcpka.b.s ft7, ft3, ft3\n"
+            "vfcpkb.b.s ft7, ft3, ft3\n"
+            "vfcpkc.b.s ft7, ft3, ft3\n"
+            "vfcpkd.b.s ft7, ft3, ft3\n"
+            "vfcpka.b.s ft8, ft4, ft4\n"
+            "vfcpkb.b.s ft8, ft4, ft4\n"
+            "vfcpkc.b.s ft8, ft4, ft4\n"
+            "vfcpkd.b.s ft8, ft4, ft4\n"
             : "+r"(fa8), "+r"(fb8)
             );
 
@@ -214,8 +222,124 @@ int main() {
         errs += (cmp2!=0xaa);
         errs += (cmp3!=0xff);
 
+        // vfmax
+        asm volatile(
+            "vfmax.b ft0, ft5, ft5\n"
+            "vfeq.b %1, ft5, ft0\n"
+            : "+r"(cmp0)
+        );
+        errs += (cmp0!=0xff);
+
+        asm volatile(
+            "vfmax.b ft0, ft6, ft6\n"
+            "vfeq.b %1, ft6, ft0\n"
+            : "+r"(cmp0)
+        );
+        errs += (cmp0!=0xff);
+
+        asm volatile(
+            "vfmax.b ft0, ft5, ft6\n"
+            "vfeq.b %1, ft7, ft0\n"
+            : "+r"(cmp0)
+        );
+        errs += (cmp0!=0xff);
+
+        asm volatile(
+            "vfmax.b ft0, ft6, ft5\n"
+            "vfeq.b %1, ft7, ft0\n"
+            : "+r"(cmp0)
+        );
+        errs += (cmp0!=0xff);
+
+        // vfmax.R
+        asm volatile(
+            "vfmax.r.b ft0, ft5, ft5\n"
+            "vfeq.b %1, ft5, ft0\n"
+            : "+r"(cmp0)
+        );
+        errs += (cmp0!=0xff);
+
+        asm volatile(
+            "vfmax.r.b ft0, ft6, ft6\n"
+            "vfeq.b %1, ft7, ft0\n"
+            : "+r"(cmp0)
+        );
+        errs += (cmp0!=0xff);
+
+        asm volatile(
+            "vfmax.r.b ft0, ft5, ft6\n"
+            "vfeq.b %1, ft7, ft0\n"
+            : "+r"(cmp0)
+        );
+        errs += (cmp0!=0xff);
+
+        asm volatile(
+            "vfmax.r.b ft0, ft6, ft5\n"
+            "vfeq.b %1, ft6, ft0\n"
+            : "+r"(cmp0)
+        );
+        errs += (cmp0!=0xff);
+
+        // vfmin
+        asm volatile(
+            "vfmin.b ft0, ft5, ft5\n"
+            "vfeq.b %1, ft5, ft0\n"
+            : "+r"(cmp0)
+        );
+        errs += (cmp0!=0xff);
+
+        asm volatile(
+            "vfmin.b ft0, ft6, ft6\n"
+            "vfeq.b %1, ft6, ft0\n"
+            : "+r"(cmp0)
+        );
+        errs += (cmp0!=0xff);
+
+        asm volatile(
+            "vfmin.b ft0, ft5, ft6\n"
+            "vfeq.b %1, ft8, ft0\n"
+            : "+r"(cmp0)
+        );
+        errs += (cmp0!=0xff);
+
+        asm volatile(
+            "vfmin.b ft0, ft6, ft5\n"
+            "vfeq.b %1, ft8, ft0\n"
+            : "+r"(cmp0)
+        );
+        errs += (cmp0!=0xff);
+
+        // vfmin.R
+        asm volatile(
+            "vfmin.r.b ft0, ft5, ft5\n"
+            "vfeq.b %1, ft8, ft0\n"
+            : "+r"(cmp0)
+        );
+        errs += (cmp0!=0xff);
+
+        asm volatile(
+            "vfmin.r.b ft0, ft6, ft6\n"
+            "vfeq.b %1, ft6, ft0\n"
+            : "+r"(cmp0)
+        );
+        errs += (cmp0!=0xff);
+
+        asm volatile(
+            "vfmin.r.b ft0, ft5, ft6\n"
+            "vfeq.b %1, ft5, ft0\n"
+            : "+r"(cmp0)
+        );
+        errs += (cmp0!=0xff);
+
+        asm volatile(
+            "vfmin.r.b ft0, ft6, ft5\n"
+            "vfeq.b %1, ft8, ft0\n"
+            : "+r"(cmp0)
+        );
+        errs += (cmp0!=0xff);
+
     }
 
-    return 0;
+    return errs;
 
 }
