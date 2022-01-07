@@ -29,7 +29,9 @@ module axi_xbar #(
   parameter type slv_resp_t                                           = logic,
   parameter type mst_req_t                                            = logic,
   parameter type mst_resp_t                                           = logic,
-  parameter type rule_t                                               = axi_pkg::xbar_rule_64_t
+  parameter type rule_t                                               = axi_pkg::xbar_rule_64_t,
+  // DERIVED: DO NOT EDIT!
+  parameter type mst_port_idx_noerr_t                                 = logic [cf_math_pkg::idx_width(Cfg.NoMstPorts)-1:0]
 ) (
   input  logic                                                       clk_i,
   input  logic                                                       rst_ni,
@@ -40,7 +42,7 @@ module axi_xbar #(
   input  mst_resp_t [Cfg.NoMstPorts-1:0]                             mst_ports_resp_i,
   input  rule_t     [Cfg.NoAddrRules-1:0]                            addr_map_i,
   input  logic      [Cfg.NoSlvPorts-1:0]                             en_default_mst_port_i,
-  input  logic      [Cfg.NoSlvPorts-1:0][$clog2(Cfg.NoMstPorts)-1:0] default_mst_port_i
+  input  mst_port_idx_noerr_t [Cfg.NoSlvPorts-1:0]                   default_mst_port_i
 );
 
   typedef logic [Cfg.AxiAddrWidth-1:0]           addr_t;
@@ -56,7 +58,7 @@ module axi_xbar #(
   slv_resp_t [Cfg.NoMstPorts-1:0][Cfg.NoSlvPorts-1:0] mst_resps;
 
   for (genvar i = 0; i < Cfg.NoSlvPorts; i++) begin : gen_slv_port_demux
-    logic [$clog2(Cfg.NoMstPorts)-1:0] dec_aw,        dec_ar;
+    mst_port_idx_noerr_t               dec_aw,        dec_ar;
     mst_port_idx_t                     slv_aw_select, slv_ar_select;
     logic                              dec_aw_valid,  dec_aw_error;
     logic                              dec_ar_valid,  dec_ar_error;
