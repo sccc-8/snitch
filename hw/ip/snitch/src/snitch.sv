@@ -241,6 +241,8 @@ module snitch import snitch_pkg::*; import riscv_instr::*; #(
   snitch_pkg::priv_lvl_t mpp_d, mpp_q;
   logic [0:0] ie_d, ie_q;
   logic [0:0] pie_d, pie_q;
+  // new CSR
+  logic [15:0] data_d, data_q;
   // Interrupts
   logic [1:0] eie_d, eie_q;
   logic [1:0] tie_d, tie_q;
@@ -274,6 +276,8 @@ module snitch import snitch_pkg::*; import riscv_instr::*; #(
   `FFSR(spp_q, spp_d, 1'b0, clk_i, rst_i)
   `FFSR(ie_q, ie_d, '0, clk_i, rst_i)
   `FFSR(pie_q, pie_d, '0, clk_i, rst_i)
+  // new CSR
+  `FFSR(data_q, data_d, '0, clk_i, rst_i)
   // Interrupts
   `FFSR(eie_q, eie_d, '0, clk_i, rst_i)
   `FFSR(tie_q, tie_d, '0, clk_i, rst_i)
@@ -2434,6 +2438,10 @@ module snitch import snitch_pkg::*; import riscv_instr::*; #(
               csr_rvalue = {30'b0, fcsr_q.fmode};
               if (!exception) fcsr_d.fmode = fpnew_pkg::fmt_mode_t'(alu_result[1:0]);
             end else illegal_csr = 1'b1;
+          end
+          // task csr
+          CSR_TASK: begin
+            csr_rvalue = {16'b0, data_q};
           end
           default: csr_rvalue = '0;
         endcase
